@@ -1,0 +1,29 @@
+@import "../variables.scss";
+
+@font-face {
+    font-family: 'ScoreBoardFont';
+    src: url('../../assets/RideTheFader-1XKg.ttf');
+  }
+
+h1{
+    margin-top: 10px;
+    color: $main1;
+}
+
+.LR-header{
+    font-weight: bold;
+}
+
+.score-table{
+    margin-left: 30px;
+}
+
+.res-score{
+    font-size: 80px;
+    color: gold;
+    background-color: black;
+    height: 100px;
+    text-align: center;
+    width: 100px;
+    border-radius: 100px;
+}

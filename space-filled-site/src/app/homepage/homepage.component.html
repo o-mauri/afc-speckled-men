@@ -1,3 +1,21 @@
-<div class="container" style="margin-top: 80px;">
-   <h1> Welcome to the Home of Space Filled FC  </h1>
+<div class="container hompage">
+   <h1>Welcome to the Home of Space Filled FC</h1>
+
+   <div class="card">
+      <div class="LR-header card-header">LATEST RESULT</div>
+      <div class="card-body">
+         <table class="score-table">
+            <tr>
+               <td><div class="res-score">{{ homeScore }}</div></td>
+               <td>-</td>
+               <td>Space Filled FC</td>
+            </tr>
+            <tr>
+               <td><div  class="res-score">{{oppScore}}</div></td>
+               <td>-</td>
+               <td>{{oppName}}</td>
+            </tr>
+         </table>
+      </div>
+   </div>
 </div>

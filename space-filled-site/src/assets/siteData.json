@@ -1,0 +1,29 @@
+{
+    "lastMatchData": 
+    {
+        "date" : "22/02/2023",
+        "opponent" : "Costa Del Scholes",
+        "sfScore" : 6,
+        "oppScore" : 1,
+        "scorers" : ["AGA","AMU","OMA", "TTW"],
+        "assisters" : ["TTW" , "JFR"]
+    },
+    "squad" : 
+    {
+        "AGA" : {
+            "name" : "Alex Gates"
+        },
+        "OMA" : {
+            "name" : "Omar Mauri"
+        },
+        "TTW" : {
+            "name" : "Tom Tweedy"
+        },
+        "JFR" : {
+            "name" : "Jack Freeman"
+        },
+        "AMU" : {
+            "name" : "Adam Murphy"
+        }
+    }
+}
