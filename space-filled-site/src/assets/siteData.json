@@ -1,13 +1,23 @@
 {
     "lastMatchData": 
     {
-        "date" : "22/02/2023",
-        "opponent" : "Costa Del Scholes",
-        "sfScore" : 6,
-        "oppScore" : 1,
-        "scorers" : ["AGA","AMU","OMA", "TTW"],
-        "assisters" : ["TTW" , "JFR"]
+        "date" : "28/02/2023",
+        "type" : "Friendly",
+        "opponent" : "SYM FC",
+        "sfScore" : 2,
+        "oppScore" : 4,
+        "scorers" : ["AGA","AGA"],
+        "assisters" : ["TTW"]
     },
+    "seasonStats" : [0, 0, 0, 0, 0, 0, 0],
+    "allTimeStats": [0, 0, 0, 0, 0, 0, 0],
+    "allTimeStatsF": [1,0,0,1,2,4,0],
+    "topScorers_s" : [],
+    "topScorers_at" : [],
+    "topScorers_atF": [["AGA", 2]],
+    "topAssist_s" : [],
+    "topAssist_at" : [],
+    "topAssist_atF": [["TTW" , 1]],
     "squad" : 
     {
         "AGA" : {
@@ -24,6 +34,9 @@
         },
         "AMU" : {
             "name" : "Adam Murphy"
+        },
+        "SCO" : {
+            "name" : "Sam Collins"
         }
     }
 }
