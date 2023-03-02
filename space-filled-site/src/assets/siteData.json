@@ -1,42 +1,126 @@
 {
-    "lastMatchData": 
-    {
-        "date" : "28/02/2023",
-        "type" : "Friendly",
-        "opponent" : "SYM FC",
-        "sfScore" : 2,
-        "oppScore" : 4,
-        "scorers" : ["AGA","AGA"],
-        "assisters" : ["TTW"]
+  "lastMatchData": {
+    "date": "28/02/2023",
+    "type": "Friendly",
+    "opponent": "SYM FC",
+    "sfScore": 2,
+    "oppScore": 4,
+    "scorers": ["AGA", "AGA"],
+    "assisters": ["SCO"]
+  },
+  "seasonStats": [0, 0, 0, 0, 0, 0, 0],
+  "allTimeStats": [0, 0, 0, 0, 0, 0, 0],
+  "allTimeStatsF": [1, 0, 0, 1, 2, 4, 0],
+  "topScorers_s": [],
+  "topScorers_at": [],
+  "topScorers_atF": [["AGA", 2]],
+  "topAssist_s": [],
+  "topAssist_at": [],
+  "topAssist_atF": [
+    ["SCO", 1]
+  ],
+  "squad": {
+    "AGA": {
+      "name": "Alex Gates",
+      "statsC": {
+        "matches": 0,
+        "wins": 0,
+        "goals": 0,
+        "assists": 0,
+        "winP": 0
+      },
+      "statsF": {
+        "matches": 1,
+        "wins": 0,
+        "goals": 0,
+        "assists": 0,
+        "winP": 0
+      }
     },
-    "seasonStats" : [0, 0, 0, 0, 0, 0, 0],
-    "allTimeStats": [0, 0, 0, 0, 0, 0, 0],
-    "allTimeStatsF": [1,0,0,1,2,4,0],
-    "topScorers_s" : [],
-    "topScorers_at" : [],
-    "topScorers_atF": [["AGA", 2]],
-    "topAssist_s" : [],
-    "topAssist_at" : [],
-    "topAssist_atF": [["TTW" , 1]],
-    "squad" : 
-    {
-        "AGA" : {
-            "name" : "Alex Gates"
-        },
-        "OMA" : {
-            "name" : "Omar Mauri"
-        },
-        "TTW" : {
-            "name" : "Tom Tweedy"
-        },
-        "JFR" : {
-            "name" : "Jack Freeman"
-        },
-        "AMU" : {
-            "name" : "Adam Murphy"
-        },
-        "SCO" : {
-            "name" : "Sam Collins"
-        }
+    "OMA": {
+      "name": "Omar Mauri",
+      "statsC": {
+        "matches": 0,
+        "wins": 0,
+        "goals": 0,
+        "assists": 0,
+        "winP": 0
+      },
+      "statsF": {
+        "matches": 1,
+        "wins": 0,
+        "goals": 0,
+        "assists": 0,
+        "winP": 0
+      }
+    },
+    "TTW": {
+      "name": "Tom Tweedy",
+      "statsC": {
+        "matches": 0,
+        "wins": 0,
+        "goals": 0,
+        "assists": 0,
+        "winP": 0
+      },
+      "statsF": {
+        "matches": 1,
+        "wins": 0,
+        "goals": 0,
+        "assists": 0,
+        "winP": 0
+      }
+    },
+    "JFR": {
+      "name": "Jack Freeman",
+      "statsC": {
+        "matches": 0,
+        "wins": 0,
+        "goals": 0,
+        "assists": 0,
+        "winP": 0
+      },
+      "statsF": {
+        "matches": 1,
+        "wins": 0,
+        "goals": 0,
+        "assists": 0,
+        "winP": 0
+      }
+    },
+    "AMU": {
+      "name": "Adam Murphy",
+      "statsC": {
+        "matches": 0,
+        "wins": 0,
+        "goals": 0,
+        "assists": 0,
+        "winP": 0
+      },
+      "statsF": {
+        "matches": 0,
+        "wins": 0,
+        "goals": 0,
+        "assists": 0,
+        "winP": 0
+      }
+    },
+    "SCO": {
+      "name": "Sam Collins",
+      "statsC": {
+        "matches": 0,
+        "wins": 0,
+        "goals": 0,
+        "assists": 0,
+        "winP": 0
+      },
+      "statsF": {
+        "matches": 1,
+        "wins": 0,
+        "goals": 0,
+        "assists": 0,
+        "winP": 0
+      }
     }
+  }
 }

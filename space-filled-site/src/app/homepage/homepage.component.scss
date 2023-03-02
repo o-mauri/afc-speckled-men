@@ -35,8 +35,8 @@ h1 {
     line-height: 1;
     padding-top: 10px;
     text-align: center;
-    border-radius: 999px;
-    border: 5px solid gold;
+    border-radius: 5px;
+    border: 5px solid $main1;
     font-family: 'ScoreBoardFont';
     color: gold;
 }
@@ -148,7 +148,7 @@ h4{
 
 .w-friendlies{
     .stat-bottom{
-        color: green;
+        color: green !important;
     }
 }
 
@@ -175,4 +175,19 @@ h4{
 .assist-head{
     display: flex;
     justify-content: space-between;
+}
+
+.stat-name{
+    width: 80%;
+    font-size: 20px;
+}
+
+.stat-value{
+    font-weight: bold;
+    font-size: 28px;
+    color: $main1;
+}
+
+.stat-table-tsa{
+    width: 100%;
 }

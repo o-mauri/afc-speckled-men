@@ -61,5 +61,13 @@ export class HomepageComponent implements OnInit {
     this.allTimeStats = rawData.allTimeStats;
     this.allTimeStatsF = rawData.allTimeStatsF;
 
+    this.topScorers_s = rawData.topScorers_s;
+    this.topScorers_at = rawData.topScorers_at;
+    this.topScorers_atF = rawData.topScorers_atF;
+
+    this.topAssist_s = rawData.topAssist_s;
+    this.topAssist_at = rawData.topAssist_at;
+    this.topAssist_atF = rawData.topAssist_atF;
+
   }
 }

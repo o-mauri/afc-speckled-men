@@ -155,15 +155,29 @@
          <div class="scorers-box card">
             <div class="card-header">This Season</div>
             <div class="card-body">
-               <table>
-                  <tr *ngFor="let scorer of topScorers_s"></tr>
-               </table>
+                <table class="stat-table-tsa">
+                    <tr *ngFor="let gsr of topScorers_s">
+                        <td class="stat-name">{{squad[gsr[0]].name}}</td>
+                        <td class="stat-value">{{gsr[1]}}</td>
+                    </tr>
+                 </table>
             </div>
          </div>
          <div class="assisters-box card">
             <div class="card-header assist-head">All Time <span class="friendly-checkbox">Include Friendlies? <input [(ngModel)]="ts_includefriendlies" type="checkbox"></span></div>
             <div class="card-body">
-              
+                <table *ngIf="ts_includefriendlies" class="stat-table-tsa">
+                    <tr *ngFor="let gsr of topScorers_atF">
+                        <td class="stat-name">{{squad[gsr[0]].name}}</td>
+                        <td class="stat-value friendlymatch">{{gsr[1]}}</td>
+                    </tr>
+                 </table>
+                 <table  *ngIf="!ts_includefriendlies" class="stat-table-tsa">
+                    <tr *ngFor="let gsr of topScorers_at">
+                        <td class="stat-name">{{squad[gsr[0]].name}}</td>
+                        <td class="stat-value">{{gsr[1]}}</td>
+                    </tr>
+                 </table>
             </div>
          </div>
       </div>
@@ -176,13 +190,29 @@
          <div class="scorers-box card">
             <div class="card-header">This Season</div>
             <div class="card-body">
-               
+                <table class="stat-table-tsa">
+                    <tr *ngFor="let astr of topAssist_s">
+                        <td class="stat-name">{{squad[astr[0]].name}}</td>
+                        <td class="stat-value">{{astr[1]}}</td>
+                    </tr>
+                 </table>
             </div>
          </div>
          <div class="assisters-box card">
             <div class="card-header assist-head">All Time <span class="friendly-checkbox">Include Friendlies? <input [(ngModel)]="ta_includefriendlies" type="checkbox"></span></div>
             <div class="card-body">
-              
+                <table *ngIf="ta_includefriendlies" class="stat-table-tsa">
+                    <tr *ngFor="let astr of topAssist_atF">
+                        <td class="stat-name">{{squad[astr[0]].name}}</td>
+                        <td class="stat-value friendlymatch">{{astr[1]}}</td>
+                    </tr>
+                 </table>
+                 <table *ngIf="!ta_includefriendlies" class="stat-table-tsa">
+                    <tr *ngFor="let astr of topAssist_at">
+                        <td class="stat-name">{{squad[astr[0]].name}}</td>
+                        <td class="stat-value">{{astr[1]}}</td>
+                    </tr>
+                 </table>
             </div>
          </div>
       </div>
