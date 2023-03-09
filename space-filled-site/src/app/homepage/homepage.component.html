@@ -161,6 +161,9 @@
                         <td class="stat-value">{{gsr[1]}}</td>
                     </tr>
                  </table>
+                 <div class="extra-stats">
+                    Ringers: {{rG_s}} <span style="margin-left: 30px;"></span>Own Goals: {{oG_s}}
+                 </div>
             </div>
          </div>
          <div class="assisters-box card">
@@ -178,6 +181,12 @@
                         <td class="stat-value">{{gsr[1]}}</td>
                     </tr>
                  </table>
+                 <div *ngIf="ts_includefriendlies" class="extra-stats">
+                    Ringers: {{rG_f}} <span style="margin-left: 30px;"></span>Own Goals: {{oG_f}}
+                 </div>
+                 <div *ngIf="!ts_includefriendlies" class="extra-stats">
+                    Ringers: {{rG}} <span style="margin-left: 30px;"></span>Own Goals: {{oG}}
+                 </div>
             </div>
          </div>
       </div>
@@ -196,6 +205,9 @@
                         <td class="stat-value">{{astr[1]}}</td>
                     </tr>
                  </table>
+                 <div class="extra-stats">
+                    Ringers: {{rA_s}}
+                 </div>
             </div>
          </div>
          <div class="assisters-box card">
@@ -213,6 +225,12 @@
                         <td class="stat-value">{{astr[1]}}</td>
                     </tr>
                  </table>
+                 <div *ngIf="ta_includefriendlies" class="extra-stats">
+                    Ringers: {{rA_f}}
+                 </div>
+                 <div *ngIf="!ta_includefriendlies" class="extra-stats">
+                    Ringers: {{rA}}
+                 </div>
             </div>
          </div>
       </div>

@@ -33,6 +33,17 @@ export class HomepageComponent implements OnInit {
   topAssist_at: Array<Array<any>> = [];
   topAssist_atF: Array<Array<any>> = [];
 
+  rG: number = 0;
+  rG_s: number = 0;
+  rG_f: number = 0;
+  rA: number = 0;
+  rA_s: number = 0;
+  rA_f: number = 0;
+  oG: number = 0;
+  oG_s: number = 0;
+  oG_f: number = 0;  
+
+
 
 
 
@@ -68,6 +79,16 @@ export class HomepageComponent implements OnInit {
     this.topAssist_s = rawData.topAssist_s;
     this.topAssist_at = rawData.topAssist_at;
     this.topAssist_atF = rawData.topAssist_atF;
+
+    this.rG = rawData.ringerGoals;
+    this.rG_s = rawData.ringerGoalsS;
+    this.rG_f = rawData.ringerGoalsF;
+    this.rA = rawData.ringerAst;
+    this.rA_s = rawData.ringerAstS;
+    this.rA_f = rawData.ringerAstF;
+    this.oG = rawData.ownGoal;
+    this.oG_s = rawData.ownGoalS;
+    this.oG_f = rawData.ownGoalF;
 
   }
 }
