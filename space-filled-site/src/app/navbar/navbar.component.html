@@ -1,8 +1,15 @@
 <div class="navig-bar">
-  <img class="team-logo" src="../../assets/sf_logo.png">
+  <div class="name-logo">
+    <img style="width: 50px; margin-right: 10px;" src="../../assets/puma.png">
+  <h1 class="team-title"><span style="font-weight: lighter;">|</span> JohnFC</h1>
+
+  </div>
   <div class="navig-menu">
-    <button>Home</button>
-    <button>Squad</button>
-    <button>Results</button>
+    <button [routerLink]="['/home']">Home</button>
+    <button [routerLink]="['/results']">Results</button>
+    <button [routerLink]="['/players']">Players</button>
+    <button [routerLink]="['/squad']">Squad</button>
+    <button [routerLink]="['/stats']">Stats</button>
+    <button [routerLink]="['/seasons']">Seasons</button>
   </div>
 </div>

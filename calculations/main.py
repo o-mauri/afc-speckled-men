@@ -1,8 +1,8 @@
 import json
 from datetime import datetime
 
-def sortStat(statList):
-    sor = sorted(statList, key=lambda x: x[1], reverse=True)
+def sortStat(statList, rev = True):
+    sor = sorted(statList, key=lambda x: x[1], reverse=rev)
     return sor
 
 def addStat(playerCode, scorerList):
@@ -16,6 +16,22 @@ def addStat(playerCode, scorerList):
         scorerList.append([playerCode, 1])
     
     return scorerList
+
+def addConceded(playerCode, oppscore, concededList):
+    added = False
+    for item in concededList:
+        if item[0] == playerCode:
+            item[2] += oppscore
+            item[3] += 1
+            
+            item[1] = round(item[2]/item[3], 1)
+            
+            added = True
+            
+    if not added:
+        concededList.append([playerCode, oppscore, oppscore, 1])
+            
+    return concededList
 
 
 ## SET FRIENDLY STATUS
@@ -51,10 +67,10 @@ oppName = input("What was the opponent team name? : ")
 
 print('Please enter the match score!')
 
-sfScore = int(input("Space Filled FC: "))
+sfScore = int(input("John FC: "))
 oppScore = int(input(f"{oppName}: "))
 
-print("Enter the SpaceFilledFC Match squad by player code! (RNG for Ringer) " )
+print("Enter the JohnFC Match squad by player code! (RNG for Ringer) " )
 squad = []
 while True:
     p = input("Player Code (Enter if no more): ")
@@ -62,6 +78,8 @@ while True:
         break
     squad.append(p)
 
+print("Enter the code for the JohnFC Goalkeeper")
+keeper = input("Player Code: ")
 
 print('Enter the player codes for the SpaceFilled scorers: (RNG for Ringer) (OWN for Own Goal)')
 
@@ -84,14 +102,26 @@ rawData = json.load(f)
 
 f.close()
 
+resObject = {
+          "opp": oppName,
+          "scr": sfScore,
+          "oppScr": oppScore,
+          "scorers": scorers
+      }
+
 if nSeason:
     rawData["seasonStats"] = [0, 0, 0, 0, 0, 0, 0]
     rawData["topScorers_s"] = []
     rawData["topAssist_s"] = []
     rawData["ringerGoalsS"] = 0
     rawData["ringerAstS"] = 0
-    rawData["ownGoalS"] = 0
+    rawData["ownGoalS"] = 0                                                      
+    rawData["cleansheet_s"] = []
+    rawData["gapg_s"]
+    rawData["results"] = [];
  
+
+rawData["results"].append(resObject)
 
 rawData['lastMatchData']['date'] = datetime.strftime(date, "%d/%m/%Y")
 if isFriendly:
@@ -154,8 +184,31 @@ if rawData['allTimeStatsF'][0] != 0:
 for player in squad:
     if player != 'RNG':
         rawData['squad'][player]["statsF"]["matches"] += 1
+        rawData['squad'][player]["statsF"]["defensiveGP"] += 1
+        rawData['squad'][player]["statsF"]["conceded"] += oppScore
+        if oppScore == 0:
+            rawData['squad'][player]["statsF"]["cleansheet"] += 1
+            
+            if player == keeper:
+                rawData['squad'][player]["statsF"]["cleansheet_k"] += 1
+        if player == keeper:
+            rawData['squad'][player]["statsF"]["defensiveGP_k"] += 1
+            rawData['squad'][player]["statsF"]["conceded_k"] += oppScore
+        
         if not isFriendly:
             rawData['squad'][player]["statsC"]["matches"] += 1
+            rawData['squad'][player]["statsC"]["defensiveGP"] += 1
+            rawData['squad'][player]["statsC"]["conceded"] += oppScore
+            rawData['gapg_s'] = addConceded(player, oppScore, rawData['gapg_s'])
+            
+            if oppScore == 0:
+                rawData['squad'][player]["statsC"]["cleansheet"] += 1
+                if player == keeper:
+                    rawData['squad'][player]["statsC"]["cleansheet_k"] += 1
+                    rawData["cleansheet_k_s"] = addStat(player, rawData["cleansheet_k_s"])
+            if player == keeper:
+                rawData['squad'][player]["statsC"]["defensiveGP_k"] += 1
+                rawData['squad'][player]["statsC"]["conceded_k"] += oppScore
         
         if win:
             rawData['squad'][player]["statsF"]["wins"] += 1
@@ -183,12 +236,10 @@ for scr in scorers:
             rawData["ownGoal"] += 1
 
     else:
-        rawData["topScorers_atF"] = addStat(scr, rawData["topScorers_atF"])
         rawData["squad"][scr]["statsF"]["goals"] += 1
 
         if not isFriendly:
            rawData["topScorers_s"] = addStat(scr, rawData["topScorers_s"])
-           rawData["topScorers_at"] = addStat(scr, rawData["topScorers_at"])
            rawData["squad"][scr]["statsC"]["goals"] += 1 
 
 #HANDLE ASSISTERS
@@ -205,18 +256,60 @@ for scr in assisters:
         rawData["squad"][scr]["statsF"]["assists"] += 1
 
         if not isFriendly:
+           rawData["squad"][scr]["statsC"]["assists"] += 1
            rawData["topAssist_s"] = addStat(scr, rawData["topAssist_s"])
-           rawData["topAssist_at"] = addStat(scr, rawData["topAssist_at"])
-           rawData["squad"][scr]["statsC"]["assists"] += 1 
 
+glist = []
+alist = []
+gFlist = []
+aFlist = []
+
+cleansheetList = []
+gaPGList = []
+cleansheetListF = []
+gaPGListF = []
+
+for pl in rawData["squad"].keys():
+    if pl not in ["RNG","OWN"]:
+        g = [pl, rawData["squad"][pl]["statsC"]["goals"]]
+        a = [pl, rawData["squad"][pl]["statsC"]["assists"]]
+        gF = [pl, rawData["squad"][pl]["statsF"]["goals"]]
+        aF = [pl, rawData["squad"][pl]["statsF"]["assists"]]
         
+        gaPG = [pl, 0.0]
+        gaPGF = [pl, 0.0]
+        
+        if rawData["squad"][pl]["statsC"]["defensiveGP"] > 0:
+            gaPG = [pl, round(rawData["squad"][pl]["statsC"]["conceded"]/rawData["squad"][pl]["statsC"]["defensiveGP"], 1)]
+        if rawData["squad"][pl]["statsF"]["defensiveGP"] > 0:
+            gaPGF = [pl, round(rawData["squad"][pl]["statsF"]["conceded"]/rawData["squad"][pl]["statsF"]["defensiveGP"], 1)]
+        cs = [pl, rawData["squad"][pl]["statsC"]["cleansheet_k"]]
+        csF = [pl, rawData["squad"][pl]["statsF"]["cleansheet_k"]]
+        
+        glist.append(g)
+        alist.append(a)
+        gFlist.append(gF)
+        aFlist.append(aF)
+        cleansheetList.append(cs)
+        gaPGList.append(gaPG)
+        cleansheetListF.append(csF)
+        gaPGListF.append(gaPGF)
 
 rawData['topScorers_s'] = sortStat(rawData['topScorers_s'])
-rawData['topScorers_at'] = sortStat(rawData['topScorers_at'])
-rawData['topScorers_atF'] = sortStat(rawData['topScorers_atF'])
+rawData['topScorers_at'] = sortStat(glist)[:5]
+rawData['topScorers_atF'] = sortStat(gFlist)[:5]
 rawData['topAssist_s'] = sortStat(rawData['topAssist_s'])
-rawData['topAssist_at'] = sortStat(rawData['topAssist_at'])
-rawData['topAssist_atF'] = sortStat(rawData['topAssist_atF'])
+rawData['topAssist_at'] = sortStat(alist)[:5]
+rawData['topAssist_atF'] = sortStat(aFlist)[:5]
+
+rawData['cleansheet_k_s'] = sortStat(rawData['cleansheet_k_s'])
+rawData['cleansheet_k_at'] = sortStat(cleansheetList)[:5]
+rawData['cleansheet_k_atF'] = sortStat(cleansheetListF)[:5]
+rawData['gapg_s'] = sortStat(rawData['gapg_s'], rev=False)
+rawData["gapg_at"] = sortStat(gaPGList, rev=False)[:5]
+rawData["gapg_atF"] = sortStat(gaPGListF, rev=False)[:5]
+
+
 
 ff = open('calculations/tmpData.json' , 'w')
 json.dump(rawData, ff)

@@ -3,6 +3,25 @@
     src: url('../assets/Quicksand-VariableFont_wght.ttf');
   }
 
+  @font-face {
+    font-family: 'ScoreBoardFont';
+    src: url('../assets/CursedTimerUlil-Aznm.ttf');
+}
+
+@font-face {
+    font-family: 'TeamName';
+    src: url('../assets/TiltWarp-Regular-VariableFont.ttf');
+}
+
 .siteProps{
     font-family: 'SpaceFilledFont';
+}
+
+.sponsors{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
 }

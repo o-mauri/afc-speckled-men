@@ -1,0 +1,264 @@
+<div class="container">
+
+    <div class="card stats-card">
+        <div class="card-header stats-card-header">
+            Matches
+        </div>
+        <div class="card-body stats-body">
+            <div class="card single-stat">
+                <div class="card-header">
+                    Appearances
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of appsList; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card single-stat">
+                <div class="card-header">
+                    Appearances <span>(inc. Friendlies)</span>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of appsListF; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value friendly">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card single-stat">
+                <div class="card-header">
+                    Wins
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of winList; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card single-stat">
+                <div class="card-header">
+                    Wins <span>(inc. Friendlies)</span>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of winListF; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value friendly">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card single-stat">
+                <div class="card-header">
+                    Win % <span>(min. 25 apps)</span>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of winRList; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value">{{plr.stat}}%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card single-stat">
+                <div class="card-header">
+                    Win % <span>(inc. Friendlies) (min. 25 apps)</span>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of winRListF; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value friendly">{{plr.stat}}%</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="card stats-card">
+        <div class="card-header stats-card-header">
+            Goals
+        </div>
+        <div class="card-body stats-body">
+            <div class="card single-stat">
+                <div class="card-header">
+                    Goals
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of goalsList; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card single-stat">
+                <div class="card-header">
+                    Goals <span>(inc. Friendlies)</span>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of goalsListF; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value friendly">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card single-stat">
+                <div class="card-header">
+                    Goals per Game <span>(min. 25 apps)</span>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of gpgList; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card single-stat">
+                <div class="card-header">
+                    Goals per Game <span>(inc. Friendlies) (min. 25 apps)</span>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of gpgListF; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value friendly">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card stats-card">
+        <div class="card-header stats-card-header">
+            Assists
+        </div>
+        <div class="card-body stats-body">
+            <div class="card single-stat">
+                <div class="card-header">
+                    Assists
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of assistList; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card single-stat">
+                <div class="card-header">
+                    Assists <span>(inc. Friendlies)</span>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of assistListF; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value friendly">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card single-stat">
+                <div class="card-header">
+                    Assists per Game <span>(min. 25 apps)</span>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of apgList; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card single-stat">
+                <div class="card-header">
+                    Assists per Game <span>(inc. Friendlies) (min. 25 apps)</span>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of apgListF; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value friendly">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="card stats-card">
+        <div class="card-header stats-card-header">
+           Goal Contributions
+        </div>
+        <div class="card-body stats-body">
+            <div class="card single-stat">
+                <div class="card-header">
+                    G/A
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of contList; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card single-stat">
+                <div class="card-header">
+                    G/A <span>(inc. Friendlies)</span>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of contListF; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value friendly">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card single-stat">
+                <div class="card-header">
+                    G/A per Game <span>(min. 25 apps)</span>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of cpgList; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card single-stat">
+                <div class="card-header">
+                    G/A per Game <span>(inc. Friendlies) (min. 25 apps)</span>
+                </div>
+                <div class="card-body">
+                    <div *ngFor="let plr of cpgListF; let i = index;" class="stat-line">
+                        <div class="stat-name">{{i + 1}}. <span>{{plr.name}}</span>
+                        </div>
+                        <div class="stat-value friendly">{{plr.stat}}</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

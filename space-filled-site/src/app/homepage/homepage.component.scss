@@ -1,15 +1,5 @@
 @import "../variables.scss";
 
-@font-face {
-    font-family: 'ScoreBoardFont';
-    src: url('../../assets/CursedTimerUlil-Aznm.ttf');
-}
-
-@font-face {
-    font-family: 'TeamName';
-    src: url('../../assets/TiltWarp-Regular-VariableFont.ttf');
-}
-
 h1 {
     margin-top: 10px;
     color: $main1;

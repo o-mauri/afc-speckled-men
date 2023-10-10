@@ -1,0 +1,88 @@
+@import "../variables.scss";
+
+.card{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.card-main{
+    margin-bottom: 30px;
+}
+.card-header-main{
+    background-color: $main1;
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    button{
+        font-size: 15px;
+        background-color: green;
+        border: 3px outset darkgreen;
+        color: white;
+        font-weight: bold;
+        border-radius: 4px;
+        height: 29px;
+    }
+}
+
+.card-body-stats{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.pl-main{
+    width: 300px;
+}
+
+.pl-header{
+    background-color: $main1;
+    color: white;
+    font-weight: bold;
+}
+
+.pl-body{
+    display: flex;
+}
+
+.statsbox{
+    background-color: $main1;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 65px;  
+}
+
+.statsline{
+    min-width: 65px;
+}
+
+.winbox{
+    border: 3px solid $main1;
+    border-radius: 5px;
+    margin-left: 20px;
+    width: 180px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    div{
+        margin-left: 5px;
+        min-width: 65px;
+        font-weight: bold;
+        font-size: 10px;
+    }
+}
+
+.outcome{
+    color: $main1;
+    font-weight: bold;
+    font-size: 25px;
+}

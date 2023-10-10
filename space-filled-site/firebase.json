@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist\\space-filled-site",
+    "public": "dist/space-filled-site",
     "ignore": [
       "firebase.json",
       "**/.*",

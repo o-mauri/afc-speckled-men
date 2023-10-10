@@ -1,0 +1,57 @@
+@import "../variables.scss";
+
+.stats-card{
+    margin-top: 20px;
+}
+
+.stats-card-header{
+    background-color: $main1;
+    color: $main2;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.stats-body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.single-stat{
+    margin-bottom: 10px;
+    .card-header{
+        background-color: $main1;
+        color: white;
+        font-weight: bold;
+        span{
+            font-weight: lighter;
+            font-size: 10px;
+        }
+    }
+    .card-body{
+        padding-right: 10px;
+    }
+}
+
+.stat-line{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .stat-name{
+        font-size: 20px;
+        span{
+            font-weight: bold;
+        }
+    }
+    .stat-value{
+        font-size: 30px;
+        width: 62px;
+        text-align: center;
+        font-weight: bold;
+        color: $main1;
+    }
+    .friendly{
+        color: green !important;
+    }
+}

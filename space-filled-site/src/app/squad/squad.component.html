@@ -1,0 +1,27 @@
+<div class="container">
+    
+    <div class="card card-main">
+        <div class="card-header card-header-main">John FC Squad
+            <button class="incFriendlies" (click)="toggleFriendlies()">Include Friendlies: {{incFriendlies ? "On" : "Off"}}</button>
+        </div>
+        <div class="card-body-stats">
+            <div *ngFor="let player of squadKeys" class="card pl-main">
+                <div class="card-header pl-header">{{squad[player].name}}</div>
+                <div class="card-body pl-body">
+                    <div class="statsbox">
+                        <div class="statsline"><fa-icon class="fa-fw" [icon]="userIcon" [fixedWidth]="true"></fa-icon> {{squad[player][searchTerm].matches}}</div>
+                        <div class="statsline"><fa-icon class="fa-fw" [icon]="footyIcon" [fixedWidth]="true"></fa-icon> {{squad[player][searchTerm].goals}}</div>
+                        <div class="statsline"><fa-icon class="fa-fw" [icon]="aIcon" [fixedWidth]="true"></fa-icon> {{squad[player][searchTerm].assists}} </div>
+                    </div>
+                    <div class="winbox">
+                        <div>Wins: <span class="outcome">{{squad[player][searchTerm].wins}}</span></div>
+                        <div>Win %: <span class="outcome">{{squad[player][searchTerm].winP}}%</span></div>
+                        <div>GPG: <span class="outcome">{{squad[player][searchTerm].goals/squad[player][searchTerm].matches | number:'1.0-2'}}</span></div>
+                        <div>APG: <span class="outcome">{{squad[player][searchTerm].assists/squad[player][searchTerm].matches | number:'1.0-2'}}</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,137 @@
+@import "../variables.scss";
+
+.pagetitle{
+    color: $main1;
+    font-weight: bold;
+    text-align: center;
+}
+
+.matchbox{
+    background-color: $main1;
+    border: 3px solid gold;
+}
+
+.internal-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.r-box{
+    font-weight: bold;
+    font-size: 40px;
+    padding: 10px;
+    border: 5px solid black;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: lightgray
+}
+
+.Wlogo{
+    color: green !important;
+    border-color: green !important;
+}
+
+.Dlogo{
+    color: orange !important;
+    border-color: orange !important;
+}
+
+.Llogo{
+    color: red !important;
+    border-color: red !important;
+}
+
+.team-box{
+    border: 3px solid gold;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 5px;
+    align-items: center;
+    min-width: 300px;
+}
+
+.scorebox{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 30px;
+}
+
+.teamname{
+    color: $main1;
+    font-size: 25px;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 40px;
+}
+
+.teamscore{
+    background-color: black;
+    border: 3px solid gold;
+    width: 50px;
+    border-left-width: 5px;
+    color: gold;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.scorerbox{
+    background-color: white;
+    border: 3px solid gold;
+    text-align: center;
+    border-radius: 5px;
+    margin-right: 20px;
+    width: 200px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.scrheader{
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.scorers{
+    font-size: 14px;
+    color: $main1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.m-r-box{
+    font-weight: bold;
+    font-size: 25px;
+    padding: 10px;
+    border: 5px solid black;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: lightgray
+}
+
+.m-teamname{
+    color: $main1;
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.m-team-box{
+    border: 3px solid gold;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 5px;
+    align-items: center;
+    min-width: 250px;
+}
+
+m-scorebox{
+    display: flex;
+    justify-content: space-between;
+
+}
