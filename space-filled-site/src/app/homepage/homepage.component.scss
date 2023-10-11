@@ -187,3 +187,15 @@ h4{
     font-style: italic;
     font-size: 10px;
 }
+
+.additional-info{
+    font-size: 8px;
+    font-weight: lighter;
+}
+
+.flex-hdr{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 10px;
+}

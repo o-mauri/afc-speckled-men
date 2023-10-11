@@ -25,6 +25,8 @@ export class HomepageComponent implements OnInit {
   stats_includefriendlies: boolean = false;
   ts_includefriendlies: boolean = false;
   ta_includefriendlies: boolean = false;
+  cs_includefriendlies: boolean = false;
+  gapg_includefriendlies: boolean = false;
 
   topScorers_s: Array<Array<any>> = [];
   topScorers_at: Array<Array<any>> = [];
@@ -32,6 +34,13 @@ export class HomepageComponent implements OnInit {
   topAssist_s: Array<Array<any>> = [];
   topAssist_at: Array<Array<any>> = [];
   topAssist_atF: Array<Array<any>> = [];
+
+  gapg_s: Array<Array<any>> = [];
+  gapg_at: Array<Array<any>> = [];
+  gapg_atF: Array<Array<any>> = [];
+  cs_s: Array<Array<any>> = [];
+  cs_at: Array<Array<any>> = [];
+  cs_atF: Array<Array<any>> = [];
 
   rG: number = 0;
   rG_s: number = 0;
@@ -79,6 +88,14 @@ export class HomepageComponent implements OnInit {
     this.topAssist_s = rawData.topAssist_s;
     this.topAssist_at = rawData.topAssist_at;
     this.topAssist_atF = rawData.topAssist_atF;
+
+    this.gapg_at = rawData.gapg_at;
+    this.gapg_atF = rawData.gapg_atF;
+    this.gapg_s = rawData.gapg_s;
+
+    this.cs_s = rawData.cleansheet_k_s;
+    this.cs_at = rawData.cleansheet_k_at;
+    this.cs_atF = rawData.cleansheet_k_atF;
 
     this.rG = rawData.ringerGoals;
     this.rG_s = rawData.ringerGoalsS;

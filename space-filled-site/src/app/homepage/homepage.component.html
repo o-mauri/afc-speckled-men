@@ -1,238 +1,347 @@
 <div class="container hompage">
-   <h1>Welcome to the Home of John FC</h1>
+  <h1>Welcome to the Home of John FC</h1>
 
-   <div class="card">
-      <div class="main-header card-header">Latest Result</div>
-      <div class="card-body">
-         <div class="matchDetails">
-            <p class="md_type" [ngClass]="{'friendlymatch' : lastMatchDetails.type == 'Friendly'}">{{
-               lastMatchDetails.type }}</p>
-            <p class="md_date">{{ lastMatchDetails.date }}</p>
-         </div>
-         <div class="hometeam-total">
-            <div class="score">
-               {{ homeScore }}
-            </div>
-            <div class="dash">
-               -
-            </div>
-            <div class="teamname">
-              John FC
-            </div>
-         </div>
-         <div class="hometeam-total">
-            <div class="score">
-               {{ oppScore }}
-            </div>
-            <div class="dash">
-               -
-            </div>
-            <div class="teamname">
-               {{ oppName }}
-            </div>
-         </div>
-         <div class="stats-box">
-            <div class="scorers-box card">
-               <div class="card-header">Goalscorers</div>
-               <div class="card-body">
-                  <p class="plist" *ngFor="let p of scorers">{{p}}</p>
-               </div>
-            </div>
-            <div class="assisters-box card">
-               <div class="card-header">Assisters</div>
-               <div class="card-body">
-                  <p class="plist" *ngFor="let a of assisters">{{a}}</p>
-               </div>
-            </div>
-         </div>
+  <div class="card">
+    <div class="main-header card-header">Latest Result</div>
+    <div class="card-body">
+      <div class="matchDetails">
+        <p
+          class="md_type"
+          [ngClass]="{ friendlymatch: lastMatchDetails.type == 'Friendly' }"
+        >
+          {{ lastMatchDetails.type }}
+        </p>
+        <p class="md_date">{{ lastMatchDetails.date }}</p>
       </div>
-   </div>
-   <div class="card">
-      <div class="card-header main-header">
-         Club Stats
+      <div class="hometeam-total">
+        <div class="score">
+          {{ homeScore }}
+        </div>
+        <div class="dash">-</div>
+        <div class="teamname">John FC</div>
       </div>
-      <div class="card-body">
-         <h4>This Season</h4>
-         <div class="c-stats-table">
-            <div>
-               <div class="stat-top"><span class="inside-text">Matches Played</span></div>
-               <div class="stat-bottom">{{seasonStats[0]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Wins</span></div>
-               <div class="stat-bottom">{{seasonStats[1]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Draws</span></div>
-               <div class="stat-bottom">{{seasonStats[2]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Losses</span></div>
-               <div class="stat-bottom">{{seasonStats[3]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Goals For</span></div>
-               <div class="stat-bottom">{{seasonStats[4]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Goals Against</span></div>
-               <div class="stat-bottom">{{seasonStats[5]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Win %</span></div>
-               <div class="stat-bottom">{{seasonStats[6]}}%</div>
-            </div>
-         </div>
-         <h4>All Time</h4>
-         <h6>Include Friendlies? <input [(ngModel)]="stats_includefriendlies" type="checkbox"></h6>
-         <div *ngIf="!stats_includefriendlies" class="c-stats-table">
-            <div>
-               <div class="stat-top"><span class="inside-text">Matches Played</span></div>
-               <div class="stat-bottom">{{allTimeStats[0]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Wins</span></div>
-               <div class="stat-bottom">{{allTimeStats[1]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Draws</span></div>
-               <div class="stat-bottom">{{allTimeStats[2]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Losses</span></div>
-               <div class="stat-bottom">{{allTimeStats[3]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Goals For</span></div>
-               <div class="stat-bottom">{{allTimeStats[4]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Goals Against</span></div>
-               <div class="stat-bottom">{{allTimeStats[5]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Win %</span></div>
-               <div class="stat-bottom">{{allTimeStats[6]}}%</div>
-            </div>
-         </div>
-         <div *ngIf="stats_includefriendlies" class="c-stats-table w-friendlies">
-            <div>
-               <div class="stat-top"><span class="inside-text">Matches Played</span></div>
-               <div class="stat-bottom">{{allTimeStatsF[0]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Wins</span></div>
-               <div class="stat-bottom">{{allTimeStatsF[1]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Draws</span></div>
-               <div class="stat-bottom">{{allTimeStatsF[2]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Losses</span></div>
-               <div class="stat-bottom">{{allTimeStatsF[3]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Goals For</span></div>
-               <div class="stat-bottom">{{allTimeStatsF[4]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Goals Against</span></div>
-               <div class="stat-bottom">{{allTimeStatsF[5]}}</div>
-            </div>
-            <div>
-               <div class="stat-top"><span class="inside-text">Win %</span></div>
-               <div class="stat-bottom">{{allTimeStatsF[6]}}%</div>
-            </div>
-         </div>
+      <div class="hometeam-total">
+        <div class="score">
+          {{ oppScore }}
+        </div>
+        <div class="dash">-</div>
+        <div class="teamname">
+          {{ oppName }}
+        </div>
       </div>
-   </div>
-   <div class="card">
-      <div class="card-header main-header">
-         Top Scorers
+      <div class="stats-box">
+        <div class="scorers-box card">
+          <div class="card-header">Goalscorers</div>
+          <div class="card-body">
+            <p class="plist" *ngFor="let p of scorers">{{ p }}</p>
+          </div>
+        </div>
+        <div class="assisters-box card">
+          <div class="card-header">Assisters</div>
+          <div class="card-body">
+            <p class="plist" *ngFor="let a of assisters">{{ a }}</p>
+          </div>
+        </div>
       </div>
-      <div class="card-body stat-box-g">
-         <div class="scorers-box card">
-            <div class="card-header">This Season</div>
-            <div class="card-body">
-                <table class="stat-table-tsa">
-                    <tr *ngFor="let gsr of topScorers_s">
-                        <td class="stat-name">{{squad[gsr[0]].name}}</td>
-                        <td class="stat-value">{{gsr[1]}}</td>
-                    </tr>
-                 </table>
-                 <div class="extra-stats">
-                    Ringers: {{rG_s}} <span style="margin-left: 30px;"></span>Own Goals: {{oG_s}}
-                 </div>
-            </div>
-         </div>
-         <div class="assisters-box card">
-            <div class="card-header assist-head">All Time <span class="friendly-checkbox">Include Friendlies? <input [(ngModel)]="ts_includefriendlies" type="checkbox"></span></div>
-            <div class="card-body">
-                <table *ngIf="ts_includefriendlies" class="stat-table-tsa">
-                    <tr *ngFor="let gsr of topScorers_atF">
-                        <td class="stat-name">{{squad[gsr[0]].name}}</td>
-                        <td class="stat-value friendlymatch">{{gsr[1]}}</td>
-                    </tr>
-                 </table>
-                 <table  *ngIf="!ts_includefriendlies" class="stat-table-tsa">
-                    <tr *ngFor="let gsr of topScorers_at">
-                        <td class="stat-name">{{squad[gsr[0]].name}}</td>
-                        <td class="stat-value">{{gsr[1]}}</td>
-                    </tr>
-                 </table>
-                 <div *ngIf="ts_includefriendlies" class="extra-stats">
-                    Ringers: {{rG_f}} <span style="margin-left: 30px;"></span>Own Goals: {{oG_f}}
-                 </div>
-                 <div *ngIf="!ts_includefriendlies" class="extra-stats">
-                    Ringers: {{rG}} <span style="margin-left: 30px;"></span>Own Goals: {{oG}}
-                 </div>
-            </div>
-         </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header main-header">Club Stats</div>
+    <div class="card-body">
+      <h4>This Season</h4>
+      <div class="c-stats-table">
+        <div>
+          <div class="stat-top">
+            <span class="inside-text">Matches Played</span>
+          </div>
+          <div class="stat-bottom">{{ seasonStats[0] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Wins</span></div>
+          <div class="stat-bottom">{{ seasonStats[1] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Draws</span></div>
+          <div class="stat-bottom">{{ seasonStats[2] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Losses</span></div>
+          <div class="stat-bottom">{{ seasonStats[3] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Goals For</span></div>
+          <div class="stat-bottom">{{ seasonStats[4] }}</div>
+        </div>
+        <div>
+          <div class="stat-top">
+            <span class="inside-text">Goals Against</span>
+          </div>
+          <div class="stat-bottom">{{ seasonStats[5] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Win %</span></div>
+          <div class="stat-bottom">{{ seasonStats[6] }}%</div>
+        </div>
       </div>
-   </div>
-   <div class="card">
-      <div class="card-header main-header">
-         Top Assisters
+      <h4>All Time</h4>
+      <h6>
+        Include Friendlies?
+        <input [(ngModel)]="stats_includefriendlies" type="checkbox" />
+      </h6>
+      <div *ngIf="!stats_includefriendlies" class="c-stats-table">
+        <div>
+          <div class="stat-top">
+            <span class="inside-text">Matches Played</span>
+          </div>
+          <div class="stat-bottom">{{ allTimeStats[0] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Wins</span></div>
+          <div class="stat-bottom">{{ allTimeStats[1] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Draws</span></div>
+          <div class="stat-bottom">{{ allTimeStats[2] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Losses</span></div>
+          <div class="stat-bottom">{{ allTimeStats[3] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Goals For</span></div>
+          <div class="stat-bottom">{{ allTimeStats[4] }}</div>
+        </div>
+        <div>
+          <div class="stat-top">
+            <span class="inside-text">Goals Against</span>
+          </div>
+          <div class="stat-bottom">{{ allTimeStats[5] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Win %</span></div>
+          <div class="stat-bottom">{{ allTimeStats[6] }}%</div>
+        </div>
       </div>
-      <div class="card-body stat-box-g">
-         <div class="scorers-box card">
-            <div class="card-header">This Season</div>
-            <div class="card-body">
-                <table class="stat-table-tsa">
-                    <tr *ngFor="let astr of topAssist_s">
-                        <td class="stat-name">{{squad[astr[0]].name}}</td>
-                        <td class="stat-value">{{astr[1]}}</td>
-                    </tr>
-                 </table>
-                 <div class="extra-stats">
-                    Ringers: {{rA_s}}
-                 </div>
-            </div>
-         </div>
-         <div class="assisters-box card">
-            <div class="card-header assist-head">All Time <span class="friendly-checkbox">Include Friendlies? <input [(ngModel)]="ta_includefriendlies" type="checkbox"></span></div>
-            <div class="card-body">
-                <table *ngIf="ta_includefriendlies" class="stat-table-tsa">
-                    <tr *ngFor="let astr of topAssist_atF">
-                        <td class="stat-name">{{squad[astr[0]].name}}</td>
-                        <td class="stat-value friendlymatch">{{astr[1]}}</td>
-                    </tr>
-                 </table>
-                 <table *ngIf="!ta_includefriendlies" class="stat-table-tsa">
-                    <tr *ngFor="let astr of topAssist_at">
-                        <td class="stat-name">{{squad[astr[0]].name}}</td>
-                        <td class="stat-value">{{astr[1]}}</td>
-                    </tr>
-                 </table>
-                 <div *ngIf="ta_includefriendlies" class="extra-stats">
-                    Ringers: {{rA_f}}
-                 </div>
-                 <div *ngIf="!ta_includefriendlies" class="extra-stats">
-                    Ringers: {{rA}}
-                 </div>
-            </div>
-         </div>
+      <div *ngIf="stats_includefriendlies" class="c-stats-table w-friendlies">
+        <div>
+          <div class="stat-top">
+            <span class="inside-text">Matches Played</span>
+          </div>
+          <div class="stat-bottom">{{ allTimeStatsF[0] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Wins</span></div>
+          <div class="stat-bottom">{{ allTimeStatsF[1] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Draws</span></div>
+          <div class="stat-bottom">{{ allTimeStatsF[2] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Losses</span></div>
+          <div class="stat-bottom">{{ allTimeStatsF[3] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Goals For</span></div>
+          <div class="stat-bottom">{{ allTimeStatsF[4] }}</div>
+        </div>
+        <div>
+          <div class="stat-top">
+            <span class="inside-text">Goals Against</span>
+          </div>
+          <div class="stat-bottom">{{ allTimeStatsF[5] }}</div>
+        </div>
+        <div>
+          <div class="stat-top"><span class="inside-text">Win %</span></div>
+          <div class="stat-bottom">{{ allTimeStatsF[6] }}%</div>
+        </div>
       </div>
-   </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header main-header">Top Scorers</div>
+    <div class="card-body stat-box-g">
+      <div class="scorers-box card">
+        <div class="card-header">This Season</div>
+        <div class="card-body">
+          <table class="stat-table-tsa">
+            <tr *ngFor="let gsr of topScorers_s">
+              <td class="stat-name">{{ squad[gsr[0]].name }}</td>
+              <td class="stat-value">{{ gsr[1] }}</td>
+            </tr>
+          </table>
+          <div class="extra-stats">
+            Ringers: {{ rG_s }} <span style="margin-left: 30px"></span>Own
+            Goals: {{ oG_s }}
+          </div>
+        </div>
+      </div>
+      <div class="assisters-box card">
+        <div class="card-header assist-head">
+          All Time
+          <span class="friendly-checkbox"
+            >Include Friendlies?
+            <input [(ngModel)]="ts_includefriendlies" type="checkbox"
+          /></span>
+        </div>
+        <div class="card-body">
+          <table *ngIf="ts_includefriendlies" class="stat-table-tsa">
+            <tr *ngFor="let gsr of topScorers_atF">
+              <td class="stat-name">{{ squad[gsr[0]].name }}</td>
+              <td class="stat-value friendlymatch">{{ gsr[1] }}</td>
+            </tr>
+          </table>
+          <table *ngIf="!ts_includefriendlies" class="stat-table-tsa">
+            <tr *ngFor="let gsr of topScorers_at">
+              <td class="stat-name">{{ squad[gsr[0]].name }}</td>
+              <td class="stat-value">{{ gsr[1] }}</td>
+            </tr>
+          </table>
+          <div *ngIf="ts_includefriendlies" class="extra-stats">
+            Ringers: {{ rG_f }} <span style="margin-left: 30px"></span>Own
+            Goals: {{ oG_f }}
+          </div>
+          <div *ngIf="!ts_includefriendlies" class="extra-stats">
+            Ringers: {{ rG }} <span style="margin-left: 30px"></span>Own Goals:
+            {{ oG }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header main-header">Top Assisters</div>
+    <div class="card-body stat-box-g">
+      <div class="scorers-box card">
+        <div class="card-header">This Season</div>
+        <div class="card-body">
+          <table class="stat-table-tsa">
+            <tr *ngFor="let astr of topAssist_s">
+              <td class="stat-name">{{ squad[astr[0]].name }}</td>
+              <td class="stat-value">{{ astr[1] }}</td>
+            </tr>
+          </table>
+          <div class="extra-stats">Ringers: {{ rA_s }}</div>
+        </div>
+      </div>
+      <div class="assisters-box card">
+        <div class="card-header assist-head">
+          All Time
+          <span class="friendly-checkbox"
+            >Include Friendlies?
+            <input [(ngModel)]="ta_includefriendlies" type="checkbox"
+          /></span>
+        </div>
+        <div class="card-body">
+          <table *ngIf="ta_includefriendlies" class="stat-table-tsa">
+            <tr *ngFor="let astr of topAssist_atF">
+              <td class="stat-name">{{ squad[astr[0]].name }}</td>
+              <td class="stat-value friendlymatch">{{ astr[1] }}</td>
+            </tr>
+          </table>
+          <table *ngIf="!ta_includefriendlies" class="stat-table-tsa">
+            <tr *ngFor="let astr of topAssist_at">
+              <td class="stat-name">{{ squad[astr[0]].name }}</td>
+              <td class="stat-value">{{ astr[1] }}</td>
+            </tr>
+          </table>
+          <div *ngIf="ta_includefriendlies" class="extra-stats">
+            Ringers: {{ rA_f }}
+          </div>
+          <div *ngIf="!ta_includefriendlies" class="extra-stats">
+            Ringers: {{ rA }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header main-header flex-hdr">
+      Goals Conceded Per Game
+      <span class="additional-info"
+        >Defensive stats are correct since 06/09/23</span
+      >
+    </div>
+    <div class="card-body stat-box-g">
+      <div class="scorers-box card">
+        <div class="card-header">This Season</div>
+        <div class="card-body">
+          <table class="stat-table-tsa">
+            <tr *ngFor="let astr of gapg_s">
+              <td class="stat-name">{{ squad[astr[0]].name }}</td>
+              <td class="stat-value">{{ astr[1] }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="assisters-box card">
+        <div class="card-header assist-head">
+          All Time
+          <span class="friendly-checkbox"
+            >Include Friendlies?
+            <input [(ngModel)]="gapg_includefriendlies" type="checkbox"
+          /></span>
+        </div>
+        <div class="card-body">
+          <table *ngIf="gapg_includefriendlies" class="stat-table-tsa">
+            <tr *ngFor="let astr of gapg_atF">
+              <td class="stat-name">{{ squad[astr[0]].name }}</td>
+              <td class="stat-value friendlymatch">{{ astr[1] }}</td>
+            </tr>
+          </table>
+          <table *ngIf="!gapg_includefriendlies" class="stat-table-tsa">
+            <tr *ngFor="let astr of gapg_at">
+              <td class="stat-name">{{ squad[astr[0]].name }}</td>
+              <td class="stat-value">{{ astr[1] }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header main-header flex-hdr">
+      Goalkeeper Clean Sheets
+      <span class="additional-info"
+        >Defensive stats are correct since 06/09/23</span
+      >
+    </div>
+    <div class="card-body stat-box-g">
+      <div class="scorers-box card">
+        <div class="card-header">This Season</div>
+        <div class="card-body">
+          <table class="stat-table-tsa">
+            <tr *ngFor="let astr of cs_s">
+              <td class="stat-name">{{ squad[astr[0]].name }}</td>
+              <td class="stat-value">{{ astr[1] }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="assisters-box card">
+        <div class="card-header assist-head">
+          All Time
+          <span class="friendly-checkbox"
+            >Include Friendlies?
+            <input [(ngModel)]="cs_includefriendlies" type="checkbox"
+          /></span>
+        </div>
+        <div class="card-body">
+          <table *ngIf="cs_includefriendlies" class="stat-table-tsa">
+            <tr *ngFor="let astr of cs_atF">
+              <td class="stat-name">{{ squad[astr[0]].name }}</td>
+              <td class="stat-value friendlymatch">{{ astr[1] }}</td>
+            </tr>
+          </table>
+          <table *ngIf="!cs_includefriendlies" class="stat-table-tsa">
+            <tr *ngFor="let astr of cs_at">
+              <td class="stat-name">{{ squad[astr[0]].name }}</td>
+              <td class="stat-value">{{ astr[1] }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -290,10 +290,13 @@ for pl in rawData["squad"].keys():
         alist.append(a)
         gFlist.append(gF)
         aFlist.append(aF)
-        cleansheetList.append(cs)
         gaPGList.append(gaPG)
-        cleansheetListF.append(csF)
         gaPGListF.append(gaPGF)
+
+        if cs[1] > 0:
+            cleansheetList.append(cs)
+        if cs[1] > 0:
+            cleansheetListF.append(csF)
 
 rawData['topScorers_s'] = sortStat(rawData['topScorers_s'])
 rawData['topScorers_at'] = sortStat(glist)[:5]
@@ -308,8 +311,6 @@ rawData['cleansheet_k_atF'] = sortStat(cleansheetListF)[:5]
 rawData['gapg_s'] = sortStat(rawData['gapg_s'], rev=False)
 rawData["gapg_at"] = sortStat(gaPGList, rev=False)[:5]
 rawData["gapg_atF"] = sortStat(gaPGListF, rev=False)[:5]
-
-
 
 ff = open('calculations/tmpData.json' , 'w')
 json.dump(rawData, ff)
