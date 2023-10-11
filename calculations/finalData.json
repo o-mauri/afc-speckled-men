@@ -99,24 +99,14 @@
   "ownGoalS": 0,
   "ownGoalF": 6,
   "results": [
-    {
-      "opp": "The Wildcards",
-      "scr": 0,
-      "oppScr": 1,
-      "scorers": []
-    },
+    { "opp": "The Wildcards", "scr": 0, "oppScr": 1, "scorers": [] },
     {
       "opp": "Sint United",
       "scr": 8,
       "oppScr": 1,
       "scorers": ["ACH", "ACH", "ACH", "AMU", "AMU", "AGA", "AGA", "TTW"]
     },
-    {
-      "opp": "SSG",
-      "scr": 0,
-      "oppScr": 0,
-      "scorers": []
-    },
+    { "opp": "SSG", "scr": 0, "oppScr": 0, "scorers": [] },
     {
       "opp": "Stringy Strikers",
       "scr": 9,
@@ -145,23 +135,13 @@
   "squad": {
     "RNG": {
       "name": "**Ringer**",
-      "statsC": {
-        "goals": 14,
-        "assists": 1
-      },
-      "statsF": {
-        "goals": 5,
-        "assists": 1
-      }
+      "statsC": { "goals": 14, "assists": 1 },
+      "statsF": { "goals": 5, "assists": 1 }
     },
     "OWN": {
       "name": "**Own Goal**",
-      "statsC": {
-        "goals": 5
-      },
-      "statsF": {
-        "goals": 1
-      }
+      "statsC": { "goals": 5 },
+      "statsF": { "goals": 1 }
     },
     "AGA": {
       "name": "Alex Gates",
