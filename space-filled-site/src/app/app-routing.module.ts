@@ -12,8 +12,6 @@ const routes: Routes = [
   {path: "results", component: ResultsComponent},
   {path: "squad", component: SquadComponent},
   {path: "stats", component: StatsComponent},
-  {path: "seasons", component: SeasonsComponent},
-  {path: "players", component: PlayersComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

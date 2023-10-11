@@ -67,10 +67,10 @@ oppName = input("What was the opponent team name? : ")
 
 print('Please enter the match score!')
 
-sfScore = int(input("John FC: "))
+sfScore = int(input("MKS United: "))
 oppScore = int(input(f"{oppName}: "))
 
-print("Enter the JohnFC Match squad by player code! (RNG for Ringer) " )
+print("Enter the MKS United Match squad by player code! (RNG for Ringer) " )
 squad = []
 while True:
     p = input("Player Code (Enter if no more): ")
@@ -78,7 +78,7 @@ while True:
         break
     squad.append(p)
 
-print("Enter the code for the JohnFC Goalkeeper")
+print("Enter the code for the MKS United Goalkeeper")
 keeper = input("Player Code: ")
 
 print('Enter the player codes for the SpaceFilled scorers: (RNG for Ringer) (OWN for Own Goal)')
