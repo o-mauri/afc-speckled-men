@@ -1,11 +1,15 @@
 {
     "lastMatchData": {
-        "date": "12/12/2023",
+        "date": "11/10/2023",
         "type": "League Match",
-        "opponent": "test",
-        "sfScore": 0,
-        "oppScore": 0,
-        "scorers": [],
+        "opponent": "The Wildcards",
+        "sfScore": 3,
+        "oppScore": 3,
+        "scorers": [
+            "AMU",
+            "AGA",
+            "SGI"
+        ],
         "assisters": []
     },
     "seasonStats": [
@@ -13,8 +17,8 @@
         4,
         1,
         1,
-        25,
-        8,
+        28,
+        11,
         67
     ],
     "allTimeStats": [
@@ -22,8 +26,8 @@
         44,
         9,
         63,
-        332,
-        392,
+        335,
+        395,
         38
     ],
     "allTimeStatsF": [
@@ -31,22 +35,22 @@
         52,
         10,
         73,
-        390,
-        437,
+        393,
+        440,
         39
     ],
     "topScorers_s": [
+        [
+            "AGA",
+            8
+        ],
         [
             "ACH",
             7
         ],
         [
-            "AGA",
-            7
-        ],
-        [
             "AMU",
-            4
+            5
         ],
         [
             "TTW",
@@ -59,16 +63,20 @@
         [
             "JRA",
             1
+        ],
+        [
+            "SGI",
+            1
         ]
     ],
     "topScorers_at": [
         [
             "AGA",
-            108
+            109
         ],
         [
             "AMU",
-            51
+            52
         ],
         [
             "LPA",
@@ -86,11 +94,11 @@
     "topScorers_atF": [
         [
             "AGA",
-            118
+            119
         ],
         [
             "AMU",
-            56
+            57
         ],
         [
             "LPA",
@@ -197,114 +205,136 @@
         [
             "SCO",
             1
-        ],
-        [
-            "AGA",
-            0
-        ],
-        [
-            "ASC",
-            0
-        ],
-        [
-            "AMU",
-            0
-        ],
-        [
-            "JFR",
-            0
         ]
     ],
     "cleansheet_k_atF": [
         [
             "SCO",
-            1
-        ],
-        [
-            "AGA",
-            0
-        ],
-        [
-            "ASC",
-            0
-        ],
-        [
-            "AMU",
-            0
-        ],
-        [
-            "JFR",
-            0
+            2
         ]
     ],
     "gapg_s": [
         [
-            "SCO",
+            "AFL",
             0,
             0,
             1
+        ],
+        [
+            "SCO",
+            1,
+            2,
+            2
+        ],
+        [
+            "ACH",
+            1,
+            2,
+            2
         ],
         [
             "AGA",
-            0,
-            0,
+            1.7,
+            5,
+            3
+        ],
+        [
+            "ASC",
+            2,
+            2,
             1
         ],
         [
-            "TTW",
-            0,
-            0,
-            1
+            "AMU",
+            2.2,
+            9,
+            4
+        ],
+        [
+            "LPA",
+            2.3,
+            7,
+            3
         ],
         [
             "SGI",
-            0,
-            0,
+            2.3,
+            7,
+            3
+        ],
+        [
+            "TTW",
+            3,
+            6,
+            2
+        ],
+        [
+            "BHA",
+            3,
+            3,
+            1
+        ],
+        [
+            "JRA",
+            3.5,
+            7,
+            2
+        ],
+        [
+            "OMA",
+            3.5,
+            7,
+            2
+        ],
+        [
+            "JFR",
+            4,
+            4,
             1
         ]
     ],
     "gapg_at": [
         [
-            "AGA",
+            "AFL",
             0.0
         ],
         [
             "SCO",
-            0.0
+            1.0
+        ],
+        [
+            "ACH",
+            1.0
+        ],
+        [
+            "AGA",
+            1.7
         ],
         [
             "ASC",
-            0.0
-        ],
-        [
-            "AMU",
-            0.0
-        ],
-        [
-            "JFR",
-            0.0
+            2.0
         ]
     ],
     "gapg_atF": [
         [
-            "AGA",
+            "BDA",
+            0.0
+        ],
+        [
+            "AFL",
+            0.0
+        ],
+        [
+            "KPA",
             0.0
         ],
         [
             "SCO",
-            0.0
+            0.7
         ],
         [
-            "ASC",
-            0.0
-        ],
-        [
-            "AMU",
-            0.0
-        ],
-        [
-            "JFR",
-            0.0
+            "ACH",
+            1.0
         ]
     ],
     "ringerGoalsS": 0,
@@ -398,10 +428,14 @@
             ]
         },
         {
-            "opp": "test",
-            "scr": 0,
-            "oppScr": 0,
-            "scorers": []
+            "opp": "The Wildcards",
+            "scr": 3,
+            "oppScr": 3,
+            "scorers": [
+                "AMU",
+                "AGA",
+                "SGI"
+            ]
         }
     ],
     "squad": {
@@ -430,12 +464,12 @@
             "statsC": {
                 "matches": 86,
                 "wins": 33,
-                "goals": 108,
+                "goals": 109,
                 "assists": 19,
                 "winP": 38,
-                "defensiveGP": 1,
+                "defensiveGP": 3,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 5,
                 "conceded_k": 0,
                 "cleansheet": 1,
                 "cleansheet_k": 0
@@ -443,44 +477,44 @@
             "statsF": {
                 "matches": 102,
                 "wins": 40,
-                "goals": 118,
+                "goals": 119,
                 "assists": 26,
                 "winP": 39,
-                "defensiveGP": 1,
+                "defensiveGP": 5,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 6,
                 "conceded_k": 0,
-                "cleansheet": 1,
+                "cleansheet": 2,
                 "cleansheet_k": 0
             }
         },
         "SCO": {
             "name": "Sam Collins",
             "statsC": {
-                "matches": 80,
+                "matches": 79,
                 "wins": 31,
                 "goals": 1,
                 "assists": 7,
                 "winP": 39,
-                "defensiveGP": 1,
-                "defensiveGP_k": 1,
-                "conceded": 0,
-                "conceded_k": 0,
+                "defensiveGP": 2,
+                "defensiveGP_k": 2,
+                "conceded": 2,
+                "conceded_k": 2,
                 "cleansheet": 1,
                 "cleansheet_k": 1
             },
             "statsF": {
-                "matches": 91,
+                "matches": 90,
                 "wins": 35,
                 "goals": 1,
                 "assists": 8,
-                "winP": 38,
-                "defensiveGP": 1,
-                "defensiveGP_k": 1,
-                "conceded": 0,
-                "conceded_k": 0,
-                "cleansheet": 1,
-                "cleansheet_k": 1
+                "winP": 39,
+                "defensiveGP": 3,
+                "defensiveGP_k": 3,
+                "conceded": 2,
+                "conceded_k": 2,
+                "cleansheet": 2,
+                "cleansheet_k": 2
             }
         },
         "ASC": {
@@ -491,9 +525,9 @@
                 "goals": 0,
                 "assists": 1,
                 "winP": 36,
-                "defensiveGP": 0,
+                "defensiveGP": 1,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 2,
                 "conceded_k": 0,
                 "cleansheet": 0,
                 "cleansheet_k": 0
@@ -504,9 +538,9 @@
                 "goals": 0,
                 "assists": 1,
                 "winP": 36,
-                "defensiveGP": 0,
+                "defensiveGP": 1,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 2,
                 "conceded_k": 0,
                 "cleansheet": 0,
                 "cleansheet_k": 0
@@ -515,29 +549,29 @@
         "AMU": {
             "name": "Adam Murphy",
             "statsC": {
-                "matches": 75,
+                "matches": 76,
                 "wins": 29,
-                "goals": 51,
+                "goals": 52,
                 "assists": 14,
-                "winP": 39,
-                "defensiveGP": 0,
+                "winP": 38,
+                "defensiveGP": 4,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 9,
                 "conceded_k": 0,
-                "cleansheet": 0,
+                "cleansheet": 1,
                 "cleansheet_k": 0
             },
             "statsF": {
-                "matches": 87,
+                "matches": 88,
                 "wins": 36,
-                "goals": 56,
+                "goals": 57,
                 "assists": 18,
                 "winP": 41,
-                "defensiveGP": 0,
+                "defensiveGP": 5,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 10,
                 "conceded_k": 0,
-                "cleansheet": 0,
+                "cleansheet": 1,
                 "cleansheet_k": 0
             }
         },
@@ -549,9 +583,9 @@
                 "goals": 6,
                 "assists": 1,
                 "winP": 39,
-                "defensiveGP": 0,
+                "defensiveGP": 1,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 4,
                 "conceded_k": 0,
                 "cleansheet": 0,
                 "cleansheet_k": 0
@@ -562,9 +596,9 @@
                 "goals": 11,
                 "assists": 2,
                 "winP": 40,
-                "defensiveGP": 0,
+                "defensiveGP": 2,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 5,
                 "conceded_k": 0,
                 "cleansheet": 0,
                 "cleansheet_k": 0
@@ -607,11 +641,11 @@
                 "goals": 22,
                 "assists": 4,
                 "winP": 42,
-                "defensiveGP": 0,
+                "defensiveGP": 2,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 2,
                 "conceded_k": 0,
-                "cleansheet": 0,
+                "cleansheet": 1,
                 "cleansheet_k": 0
             },
             "statsF": {
@@ -620,38 +654,38 @@
                 "goals": 26,
                 "assists": 7,
                 "winP": 43,
-                "defensiveGP": 0,
+                "defensiveGP": 2,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 2,
                 "conceded_k": 0,
-                "cleansheet": 0,
+                "cleansheet": 1,
                 "cleansheet_k": 0
             }
         },
         "TTW": {
             "name": "Tom Tweedy",
             "statsC": {
-                "matches": 53,
+                "matches": 52,
                 "wins": 19,
                 "goals": 22,
                 "assists": 5,
-                "winP": 36,
-                "defensiveGP": 1,
+                "winP": 37,
+                "defensiveGP": 2,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 6,
                 "conceded_k": 0,
-                "cleansheet": 1,
+                "cleansheet": 0,
                 "cleansheet_k": 0
             },
             "statsF": {
-                "matches": 61,
+                "matches": 60,
                 "wins": 21,
                 "goals": 28,
                 "assists": 6,
-                "winP": 34,
-                "defensiveGP": 1,
+                "winP": 35,
+                "defensiveGP": 4,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 7,
                 "conceded_k": 0,
                 "cleansheet": 1,
                 "cleansheet_k": 0
@@ -689,27 +723,27 @@
         "OMA": {
             "name": "Omar Mauri",
             "statsC": {
-                "matches": 44,
+                "matches": 45,
                 "wins": 16,
                 "goals": 7,
                 "assists": 9,
                 "winP": 36,
-                "defensiveGP": 0,
+                "defensiveGP": 2,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 7,
                 "conceded_k": 0,
                 "cleansheet": 0,
                 "cleansheet_k": 0
             },
             "statsF": {
-                "matches": 53,
+                "matches": 54,
                 "wins": 22,
                 "goals": 8,
                 "assists": 11,
-                "winP": 42,
-                "defensiveGP": 0,
+                "winP": 41,
+                "defensiveGP": 3,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 8,
                 "conceded_k": 0,
                 "cleansheet": 0,
                 "cleansheet_k": 0
@@ -736,40 +770,40 @@
                 "goals": 12,
                 "assists": 1,
                 "winP": 46,
-                "defensiveGP": 0,
+                "defensiveGP": 1,
                 "defensiveGP_k": 0,
                 "conceded": 0,
                 "conceded_k": 0,
-                "cleansheet": 0,
+                "cleansheet": 1,
                 "cleansheet_k": 0
             }
         },
         "LPA": {
             "name": "Luke Parker",
             "statsC": {
-                "matches": 39,
+                "matches": 40,
                 "wins": 15,
                 "goals": 33,
                 "assists": 6,
                 "winP": 38,
-                "defensiveGP": 0,
+                "defensiveGP": 3,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 7,
                 "conceded_k": 0,
-                "cleansheet": 0,
+                "cleansheet": 1,
                 "cleansheet_k": 0
             },
             "statsF": {
-                "matches": 50,
+                "matches": 51,
                 "wins": 21,
                 "goals": 45,
                 "assists": 6,
-                "winP": 42,
-                "defensiveGP": 0,
+                "winP": 41,
+                "defensiveGP": 5,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 8,
                 "conceded_k": 0,
-                "cleansheet": 0,
+                "cleansheet": 2,
                 "cleansheet_k": 0
             }
         },
@@ -778,26 +812,26 @@
             "statsC": {
                 "matches": 35,
                 "wins": 15,
-                "goals": 5,
+                "goals": 6,
                 "assists": 7,
                 "winP": 43,
-                "defensiveGP": 1,
-                "defensiveGP_k": 0,
-                "conceded": 0,
-                "conceded_k": 0,
+                "defensiveGP": 3,
+                "defensiveGP_k": 1,
+                "conceded": 7,
+                "conceded_k": 4,
                 "cleansheet": 1,
                 "cleansheet_k": 0
             },
             "statsF": {
                 "matches": 43,
                 "wins": 16,
-                "goals": 6,
+                "goals": 7,
                 "assists": 8,
                 "winP": 37,
-                "defensiveGP": 1,
-                "defensiveGP_k": 0,
-                "conceded": 0,
-                "conceded_k": 0,
+                "defensiveGP": 3,
+                "defensiveGP_k": 1,
+                "conceded": 7,
+                "conceded_k": 4,
                 "cleansheet": 1,
                 "cleansheet_k": 0
             }
@@ -897,11 +931,11 @@
                 "goals": 12,
                 "assists": 1,
                 "winP": 46,
-                "defensiveGP": 0,
+                "defensiveGP": 1,
                 "defensiveGP_k": 0,
                 "conceded": 0,
                 "conceded_k": 0,
-                "cleansheet": 0,
+                "cleansheet": 1,
                 "cleansheet_k": 0
             },
             "statsF": {
@@ -910,39 +944,39 @@
                 "goals": 12,
                 "assists": 1,
                 "winP": 38,
-                "defensiveGP": 0,
+                "defensiveGP": 2,
                 "defensiveGP_k": 0,
                 "conceded": 0,
                 "conceded_k": 0,
-                "cleansheet": 0,
+                "cleansheet": 2,
                 "cleansheet_k": 0
             }
         },
         "BHA": {
             "name": "Bill Hall",
             "statsC": {
-                "matches": 14,
+                "matches": 15,
                 "wins": 3,
                 "goals": 2,
                 "assists": 4,
-                "winP": 21,
-                "defensiveGP": 0,
-                "defensiveGP_k": 0,
-                "conceded": 0,
-                "conceded_k": 0,
+                "winP": 20,
+                "defensiveGP": 1,
+                "defensiveGP_k": 1,
+                "conceded": 3,
+                "conceded_k": 3,
                 "cleansheet": 0,
                 "cleansheet_k": 0
             },
             "statsF": {
-                "matches": 19,
+                "matches": 20,
                 "wins": 6,
                 "goals": 4,
                 "assists": 5,
-                "winP": 32,
-                "defensiveGP": 0,
-                "defensiveGP_k": 0,
-                "conceded": 0,
-                "conceded_k": 0,
+                "winP": 30,
+                "defensiveGP": 2,
+                "defensiveGP_k": 2,
+                "conceded": 4,
+                "conceded_k": 4,
                 "cleansheet": 0,
                 "cleansheet_k": 0
             }
@@ -1055,11 +1089,11 @@
                 "goals": 4,
                 "assists": 2,
                 "winP": 29,
-                "defensiveGP": 0,
+                "defensiveGP": 1,
                 "defensiveGP_k": 0,
                 "conceded": 0,
                 "conceded_k": 0,
-                "cleansheet": 0,
+                "cleansheet": 1,
                 "cleansheet_k": 0
             }
         },
@@ -1095,29 +1129,29 @@
         "JRA": {
             "name": "Jon Ramsell",
             "statsC": {
-                "matches": 15,
+                "matches": 16,
                 "wins": 6,
                 "goals": 2,
                 "assists": 4,
-                "winP": 40,
-                "defensiveGP": 0,
+                "winP": 38,
+                "defensiveGP": 2,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 7,
                 "conceded_k": 0,
                 "cleansheet": 0,
                 "cleansheet_k": 0
             },
             "statsF": {
-                "matches": 20,
+                "matches": 21,
                 "wins": 9,
                 "goals": 6,
                 "assists": 8,
-                "winP": 45,
-                "defensiveGP": 0,
+                "winP": 43,
+                "defensiveGP": 4,
                 "defensiveGP_k": 0,
-                "conceded": 0,
+                "conceded": 8,
                 "conceded_k": 0,
-                "cleansheet": 0,
+                "cleansheet": 1,
                 "cleansheet_k": 0
             }
         },

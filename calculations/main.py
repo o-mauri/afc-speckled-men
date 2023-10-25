@@ -276,13 +276,13 @@ for pl in rawData["squad"].keys():
         gF = [pl, rawData["squad"][pl]["statsF"]["goals"]]
         aF = [pl, rawData["squad"][pl]["statsF"]["assists"]]
         
-        gaPG = [pl, 0.0]
-        gaPGF = [pl, 0.0]
         
         if rawData["squad"][pl]["statsC"]["defensiveGP"] > 0:
             gaPG = [pl, round(rawData["squad"][pl]["statsC"]["conceded"]/rawData["squad"][pl]["statsC"]["defensiveGP"], 1)]
+            gaPGList.append(gaPG)
         if rawData["squad"][pl]["statsF"]["defensiveGP"] > 0:
             gaPGF = [pl, round(rawData["squad"][pl]["statsF"]["conceded"]/rawData["squad"][pl]["statsF"]["defensiveGP"], 1)]
+            gaPGListF.append(gaPGF)
         cs = [pl, rawData["squad"][pl]["statsC"]["cleansheet_k"]]
         csF = [pl, rawData["squad"][pl]["statsF"]["cleansheet_k"]]
         
@@ -290,8 +290,6 @@ for pl in rawData["squad"].keys():
         alist.append(a)
         gFlist.append(gF)
         aFlist.append(aF)
-        gaPGList.append(gaPG)
-        gaPGListF.append(gaPGF)
 
         if cs[1] > 0:
             cleansheetList.append(cs)
