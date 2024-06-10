@@ -1,47 +1,43 @@
 <div class="container">
-    <h1 class="mt-4 pagetitle">Season Results</h1>
+  <h1 class="mt-4 pagetitle">Season Results</h1>
 
-    <div *ngFor="let game of results; let i = index" class="card matchbox">
-        <div class="internal-box" *ngIf="!isMobile">
-            <div *ngIf="game.scr>game.oppScr" class="r-box Wlogo">W</div>
-            <div *ngIf="game.scr==game.oppScr" class="r-box Dlogo">D</div>
-            <div *ngIf="game.scr<game.oppScr" class="r-box Llogo">L</div>
-            <div class="scorebox">
-                <div class="team-box">
-                    <span class="teamname">John FC</span>
-                    <span class="teamscore">{{game.scr}}</span>
-                </div>
-                <div class="team-box">
-                    <span class="teamname">{{game.opp}}</span>
-                    <span class="teamscore">{{game.oppScr}}</span>
-
-                </div>
-            </div>
-            <div class="scorerbox">
-                <h4 class="scrheader">Scorers</h4>
-                <h4 class="scorers"><span *ngFor="let plr of game.scorers">{{squad[plr].name}}. </span>
-                </h4>
-            </div>
+  <div *ngFor="let game of results; let i = index" class="card matchbox">
+    <div class="internal-box" *ngIf="!isMobile">
+      <div *ngIf="game.scr > game.oppScr" class="r-box Wlogo">W</div>
+      <div *ngIf="game.scr == game.oppScr" class="r-box Dlogo">D</div>
+      <div *ngIf="game.scr < game.oppScr" class="r-box Llogo">L</div>
+      <div class="scorebox">
+        <div class="team-box">
+          <span class="teamname">Speckled Men</span>
+          <span class="teamscore">{{ game.scr }}</span>
         </div>
-
-
-
-
-        <div class="internal-box" *ngIf="isMobile">
-            <div *ngIf="game.scr>game.oppScr" class="m-r-box Wlogo">W</div>
-            <div *ngIf="game.scr==game.oppScr" class="m-r-box Dlogo">D</div>
-            <div *ngIf="game.scr<game.oppScr" class="m-r-box Llogo">L</div>
-            <div class="m-scorebox">
-                <div class="m-team-box">
-                    <span class="m-teamname">John FC</span>
-                    <span class="teamscore">{{game.scr}}</span>
-                </div>
-                <div class="m-team-box">
-                    <span class="m-teamname">{{game.opp}}</span>
-                    <span class="teamscore">{{game.oppScr}}</span>
-
-                </div>
-            </div>
+        <div class="team-box">
+          <span class="teamname">{{ game.opp }}</span>
+          <span class="teamscore">{{ game.oppScr }}</span>
         </div>
+      </div>
+      <div class="scorerbox">
+        <h4 class="scrheader">Scorers</h4>
+        <h4 class="scorers">
+          <span *ngFor="let plr of game.scorers">{{ squad[plr].name }}. </span>
+        </h4>
+      </div>
     </div>
+
+    <div class="internal-box" *ngIf="isMobile">
+      <div *ngIf="game.scr > game.oppScr" class="m-r-box Wlogo">W</div>
+      <div *ngIf="game.scr == game.oppScr" class="m-r-box Dlogo">D</div>
+      <div *ngIf="game.scr < game.oppScr" class="m-r-box Llogo">L</div>
+      <div class="m-scorebox">
+        <div class="m-team-box">
+          <span class="m-teamname">Speckled Men</span>
+          <span class="teamscore">{{ game.scr }}</span>
+        </div>
+        <div class="m-team-box">
+          <span class="m-teamname">{{ game.opp }}</span>
+          <span class="teamscore">{{ game.oppScr }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,201 +1,205 @@
 @import "../variables.scss";
 
 h1 {
-    margin-top: 10px;
-    color: $main1;
+  margin-top: 10px;
+  color: $main1;
 }
 
 .main-header {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .hometeam-total {
-    display: flex;
-    width: 90%;
-    margin: auto;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  width: 90%;
+  margin: auto;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .score {
-    font-size: calc(30px + 3vw);
-    padding-left: 15px;
-    padding-right: 15px;
-    background-color: black;
-    line-height: 1;
-    padding-top: 10px;
-    text-align: center;
-    border-radius: 5px;
-    border: 5px solid $main1;
-    font-family: 'ScoreBoardFont';
-    color: gold;
+  font-size: calc(30px + 3vw);
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: black;
+  line-height: 1;
+  padding-top: 10px;
+  text-align: center;
+  border-radius: 5px;
+  border: 5px solid $main1;
+  font-family: "ScoreBoardFont";
+  color: gold;
 }
 
 .dash {
-    font-weight: bold;
-    font-size: calc(40px + 3vw);
-    line-height: 1;
-    margin: 0px 20px;
+  font-weight: bold;
+  font-size: calc(40px + 3vw);
+  line-height: 1;
+  margin: 0px 20px;
 }
 
-.teamname{
-    font-family: 'TeamName';
-    font-size: calc(20px + 2.5vw);
-    color: $main1
+.teamname {
+  font-family: "TeamName";
+  font-size: calc(20px + 2.5vw);
+  color: $main1;
 }
 
-.md_type{
-    font-weight: bold;
-    color: darkblue;
-    margin-bottom: 0px;
+.md_type {
+  font-weight: bold;
+  color: darkblue;
+  margin-bottom: 0px;
 }
 
-.md_date{
-    margin-bottom: 4px;
-    color: black;
-    font-weight: bold;
+.md_date {
+  margin-bottom: 4px;
+  color: black;
+  font-weight: bold;
 }
 
-.friendlymatch{
+.friendlymatch {
+  color: green !important;
+}
+
+.matchDetails {
+  margin-left: 5%;
+  background-color: #f0f0f0;
+  width: 140px;
+  padding: 5px;
+  margin-bottom: 20px;
+  border: 2px outset;
+  border-radius: 10px;
+}
+
+.scorers-box {
+  width: max(40%, 300px);
+  margin-bottom: 20px;
+}
+
+.assisters-box {
+  width: max(40%, 300px);
+}
+
+.stats-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.plist {
+  color: $main1;
+  font-size: 14px;
+  line-height: 13px;
+  margin-bottom: 5px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+h4 {
+  font-weight: bold;
+  color: $main1;
+  text-decoration: underline;
+}
+
+.card-header {
+  background-color: $main1;
+  color: $main2;
+}
+
+.c-stats-table {
+  width: 95%;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
+  margin: auto;
+}
+
+.stat-top {
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 18px;
+  width: 80px;
+  height: 60px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.stat-bottom {
+  font-weight: bold;
+  font-size: 55px;
+  color: $main1;
+}
+
+.w-friendlies {
+  .stat-bottom {
     color: green !important;
+  }
 }
 
-.matchDetails{
-    margin-left: 5%;
-    background-color: #f0f0f0;
-    width: 140px;
-    padding: 5px;
-    margin-bottom: 20px;
-    border: 2px outset;
-    border-radius: 10px;
+.stat-box-g {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-
-.scorers-box{
-    width: max(40%, 300px);
-    margin-bottom: 20px;
+.friendly-checkbox {
+  font-size: 12px;
+  background-color: #f0f0f0;
+  color: $main1;
+  margin-left: 30px;
+  display: flex;
+  width: 130px;
+  padding-left: 5px;
+  padding-right: 5px;
+  justify-content: space-between;
+  border-radius: 5px;
+  align-items: center;
 }
 
-.assisters-box{
-    width: max(40%, 300px);
+.assist-head {
+  display: flex;
+  justify-content: space-between;
 }
 
-.stats-box{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-around;
+.stat-name {
+  width: 80%;
+  font-size: 20px;
 }
 
-.plist{
-    color: $main1;
-    font-size: 14px;
-    line-height: 13px;
-    margin-bottom: 5px;
+.stat-value {
+  font-weight: bold;
+  font-size: 28px;
+  color: $main1;
 }
 
-.card{
-    margin-bottom: 20px;
+.stat-table-tsa {
+  width: 100%;
 }
 
-h4{
-    font-weight: bold;
-    color: $main1;
-    text-decoration: underline;
+.extra-stats {
+  color: grey;
+  font-style: italic;
+  font-size: 10px;
 }
 
-.card-header{
-    background-color: $main1;
-    color: $main2;
+.additional-info {
+  font-size: 8px;
+  font-weight: lighter;
 }
 
-.c-stats-table{
-    width: 95%;
-    text-align: center;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 10px;
-    margin: auto;
+.flex-hdr {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 10px;
 }
 
-.stat-top{
-    font-weight: bold;
-    text-decoration: underline;
-    font-size: 18px;
-    width: 80px;
-    height: 60px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-}
-
-.stat-bottom{
-    font-weight: bold;
-    font-size: 55px;
-    color: $main1;
-}
-
-.w-friendlies{
-    .stat-bottom{
-        color: green !important;
-    }
-}
-
-.stat-box-g{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.friendly-checkbox{
-    font-size: 12px;
-    background-color: #f0f0f0;
-    color: $main1;
-    margin-left: 30px;
-    display: flex;
-    width: 130px;
-    padding-left: 5px;
-    padding-right: 5px;
-    justify-content: space-between;
-    border-radius: 5px;
-    align-items: center;
-}
-
-.assist-head{
-    display: flex;
-    justify-content: space-between;
-}
-
-.stat-name{
-    width: 80%;
-    font-size: 20px;
-}
-
-.stat-value{
-    font-weight: bold;
-    font-size: 28px;
-    color: $main1;
-}
-
-.stat-table-tsa{
-    width: 100%;
-}
-
-.extra-stats{
-    color: grey;
-    font-style: italic;
-    font-size: 10px;
-}
-
-.additional-info{
-    font-size: 8px;
-    font-weight: lighter;
-}
-
-.flex-hdr{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    column-gap: 10px;
+.squad-image {
+  width: 90%;
+  border: 3px solid $main1;
 }
