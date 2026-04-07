@@ -1,43 +1,68 @@
 <div class="container">
-  <h1 class="mt-4 pagetitle">Season Results</h1>
+  <div class="d-flex justify-content-between align-items-center mt-4 mb-3 flex-wrap gap-2">
+    <h1 class="pagetitle mb-0">Season Results</h1>
+    <select class="form-select w-auto" [(ngModel)]="selectedSeasonId" (ngModelChange)="loadResults()">
+      <option *ngFor="let s of seasons" [value]="s.id">{{ s.name }}</option>
+    </select>
+  </div>
 
-  <div *ngFor="let game of results; let i = index" class="card matchbox">
+  <div *ngIf="loading" class="text-center mt-5">
+    <div class="spinner-border text-primary" role="status"></div>
+  </div>
+
+  <div *ngIf="!loading && results.length === 0" class="text-center text-muted mt-4">
+    No matches recorded for this season.
+  </div>
+
+  <div *ngFor="let game of results" class="card matchbox" [class.forfeit-match]="game.isForfeit">
+    <!-- Desktop -->
     <div class="internal-box" *ngIf="!isMobile">
-      <div *ngIf="game.scr > game.oppScr" class="r-box Wlogo">W</div>
-      <div *ngIf="game.scr == game.oppScr" class="r-box Dlogo">D</div>
-      <div *ngIf="game.scr < game.oppScr" class="r-box Llogo">L</div>
+      <div *ngIf="game.isForfeit" class="r-box FFlogo">FF</div>
+      <div *ngIf="!game.isForfeit && game.teamScore > game.opponentScore" class="r-box Wlogo">W</div>
+      <div *ngIf="!game.isForfeit && game.teamScore === game.opponentScore" class="r-box Dlogo">D</div>
+      <div *ngIf="!game.isForfeit && game.teamScore < game.opponentScore" class="r-box Llogo">L</div>
       <div class="scorebox">
         <div class="team-box">
           <span class="teamname">Speckled Men</span>
-          <span class="teamscore">{{ game.scr }}</span>
+          <span class="teamscore">{{ game.teamScore }}</span>
         </div>
         <div class="team-box">
-          <span class="teamname">{{ game.opp }}</span>
-          <span class="teamscore">{{ game.oppScr }}</span>
+          <span class="teamname">{{ game.opponent }}</span>
+          <span class="teamscore">{{ game.opponentScore }}</span>
         </div>
       </div>
-      <div class="scorerbox">
+      <div class="match-meta">
+        <small class="text-light">{{ game.date }}</small>
+        <span *ngIf="game.isForfeit" class="badge bg-warning text-dark">Forfeit</span>
+        <span *ngIf="!game.isForfeit" class="badge" [ngClass]="game.matchType === 'Friendly' ? 'bg-success' : 'bg-primary'">
+          {{ game.matchType }}
+        </span>
+      </div>
+      <div *ngIf="!game.isForfeit" class="scorerbox">
         <h4 class="scrheader">Scorers</h4>
         <h4 class="scorers">
-          <span *ngFor="let plr of game.scorers">{{ squad[plr].name }}. </span>
+          <span *ngFor="let plr of getScorers(game)">{{ plr }}. </span>
         </h4>
       </div>
     </div>
 
+    <!-- Mobile -->
     <div class="internal-box" *ngIf="isMobile">
-      <div *ngIf="game.scr > game.oppScr" class="m-r-box Wlogo">W</div>
-      <div *ngIf="game.scr == game.oppScr" class="m-r-box Dlogo">D</div>
-      <div *ngIf="game.scr < game.oppScr" class="m-r-box Llogo">L</div>
+      <div *ngIf="game.isForfeit" class="m-r-box FFlogo">FF</div>
+      <div *ngIf="!game.isForfeit && game.teamScore > game.opponentScore" class="m-r-box Wlogo">W</div>
+      <div *ngIf="!game.isForfeit && game.teamScore === game.opponentScore" class="m-r-box Dlogo">D</div>
+      <div *ngIf="!game.isForfeit && game.teamScore < game.opponentScore" class="m-r-box Llogo">L</div>
       <div class="m-scorebox">
         <div class="m-team-box">
           <span class="m-teamname">Speckled Men</span>
-          <span class="teamscore">{{ game.scr }}</span>
+          <span class="teamscore">{{ game.teamScore }}</span>
         </div>
         <div class="m-team-box">
-          <span class="m-teamname">{{ game.opp }}</span>
-          <span class="teamscore">{{ game.oppScr }}</span>
+          <span class="m-teamname">{{ game.opponent }}</span>
+          <span class="teamscore">{{ game.opponentScore }}</span>
         </div>
       </div>
+      <span *ngIf="game.isForfeit" class="badge bg-warning text-dark ms-2">Forfeit</span>
     </div>
   </div>
 </div>

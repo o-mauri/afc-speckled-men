@@ -1,0 +1,73 @@
+@import "../../variables.scss";
+
+h2 {
+  color: $main1;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.card-header {
+  background-color: $main1;
+  color: white;
+  font-weight: bold;
+}
+
+.player-preview {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid $main1;
+}
+
+.player-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.player-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-thumb {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid $main1;
+}
+
+.player-thumb-placeholder {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: $main3;
+  border: 2px solid $main3;
+}
+
+.player-name {
+  font-weight: bold;
+  color: $main1;
+}
+
+.player-actions {
+  display: flex;
+  gap: 5px;
+}

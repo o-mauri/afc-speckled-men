@@ -1,38 +1,50 @@
 @import "../variables.scss";
 
-.navig-bar{
-    background-color: $main1;
-    width: 100%;
-
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    flex-wrap: wrap;
+.navig-bar {
+  background-color: $main1;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  flex-wrap: wrap;
 }
 
-.team-title{
-    color: white;
-    font-weight: bolder;
+.team-title {
+  color: white;
+  font-weight: bolder;
 }
 
-.navig-menu{
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-around;
-    button{
-        background-color: transparent;
-        border: 0px;
-        color: $main2;
+.navig-menu {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  button {
+    background-color: transparent;
+    border: 0px;
+    color: $main2;
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
     }
-    button:hover{
-        color: $main3;
-    }
+  }
+  .active-link {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+  }
+  .admin-btn {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+  }
 }
 
-.name-logo{
-    display: flex;
-    align-items: center;
+.name-logo {
+  display: flex;
+  align-items: center;
 }

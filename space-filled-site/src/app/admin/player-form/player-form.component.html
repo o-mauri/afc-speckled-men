@@ -1,0 +1,57 @@
+<div class="container mt-3">
+  <div class="d-flex align-items-center mb-3">
+    <button class="btn btn-outline-secondary me-3" routerLink="/admin">Back</button>
+    <h2>Manage Players</h2>
+  </div>
+
+  <div *ngIf="message" class="alert alert-{{ messageType }}">{{ message }}</div>
+
+  <div class="card mb-4">
+    <div class="card-header">{{ editingPlayer ? 'Edit Player' : 'Add Player' }}</div>
+    <div class="card-body">
+      <div class="mb-3">
+        <label class="form-label">Player Name</label>
+        <input type="text" class="form-control" [(ngModel)]="playerName" placeholder="Enter name" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Player Image</label>
+        <input type="file" class="form-control" accept="image/*" (change)="onFileSelected($event)" />
+        <small class="text-muted">Image will be compressed to max 300px and JPEG quality 60%</small>
+      </div>
+      <div *ngIf="imagePreview" class="mb-3">
+        <img [src]="imagePreview" class="player-preview" alt="Preview" />
+      </div>
+      <div class="d-flex gap-2">
+        <button class="btn btn-primary" (click)="savePlayer()" [disabled]="loading || !playerName.trim()">
+          {{ loading ? 'Saving...' : (editingPlayer ? 'Update' : 'Add Player') }}
+        </button>
+        <button *ngIf="editingPlayer" class="btn btn-secondary" (click)="resetForm()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">Current Players</div>
+    <div class="card-body">
+      <div *ngIf="players.length === 0" class="text-muted">No players added yet.</div>
+      <div class="player-list">
+        <div *ngFor="let player of players" class="player-item">
+          <div class="player-info">
+            <img
+              *ngIf="player.imageUrl"
+              [src]="player.imageUrl"
+              class="player-thumb"
+              alt="{{ player.name }}"
+            />
+            <div *ngIf="!player.imageUrl" class="player-thumb-placeholder">?</div>
+            <span class="player-name">{{ player.name }}</span>
+          </div>
+          <div class="player-actions">
+            <button class="btn btn-sm btn-outline-primary" (click)="editPlayer(player)">Edit</button>
+            <button class="btn btn-sm btn-outline-danger" (click)="removePlayer(player)">Remove</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

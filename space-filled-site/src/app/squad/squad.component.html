@@ -1,64 +1,50 @@
 <div class="container">
-  <div class="card card-main">
+  <div *ngIf="loading" class="text-center mt-5">
+    <div class="spinner-border text-primary" role="status"></div>
+  </div>
+
+  <div *ngIf="!loading" class="card card-main">
     <div class="card-header card-header-main">
       AFC Speckled Men Squad
       <button class="incFriendlies" (click)="toggleFriendlies()">
-        Include Friendlies: {{ incFriendlies ? "On" : "Off" }}
+        Include Friendlies: {{ incFriendlies ? 'On' : 'Off' }}
       </button>
     </div>
     <div class="card-body-stats">
-      <div *ngFor="let player of squadKeys" class="card pl-main">
-        <div class="card-header pl-header">{{ squad[player].name }}</div>
+      <div *ngIf="playerStats.length === 0" class="text-muted p-3">No match data yet.</div>
+      <div *ngFor="let player of playerStats" class="card pl-main">
+        <div class="card-header pl-header">
+          <img
+            *ngIf="player.imageUrl"
+            [src]="player.imageUrl"
+            class="player-avatar"
+            alt="{{ player.playerName }}"
+          />
+          <div *ngIf="!player.imageUrl" class="player-avatar-placeholder">
+            {{ player.playerName.charAt(0) }}
+          </div>
+          {{ player.playerName }}
+        </div>
         <div class="card-body pl-body">
           <div class="statsbox">
             <div class="statsline">
-              <fa-icon
-                class="fa-fw"
-                [icon]="userIcon"
-                [fixedWidth]="true"
-              ></fa-icon>
-              {{ squad[player][searchTerm].matches }}
+              <fa-icon class="fa-fw" [icon]="userIcon" [fixedWidth]="true"></fa-icon>
+              {{ getMatches(player) }}
             </div>
             <div class="statsline">
-              <fa-icon
-                class="fa-fw"
-                [icon]="footyIcon"
-                [fixedWidth]="true"
-              ></fa-icon>
-              {{ squad[player][searchTerm].goals }}
+              <fa-icon class="fa-fw" [icon]="footyIcon" [fixedWidth]="true"></fa-icon>
+              {{ getGoals(player) }}
             </div>
             <div class="statsline">
-              <fa-icon
-                class="fa-fw"
-                [icon]="aIcon"
-                [fixedWidth]="true"
-              ></fa-icon>
-              {{ squad[player][searchTerm].assists }}
+              <fa-icon class="fa-fw" [icon]="aIcon" [fixedWidth]="true"></fa-icon>
+              {{ getAssists(player) }}
             </div>
           </div>
           <div class="winbox">
-            <div>
-              Wins:
-              <span class="outcome">{{ squad[player][searchTerm].wins }}</span>
-            </div>
-            <div>
-              Win %:
-              <span class="outcome">{{ squad[player][searchTerm].winP }}%</span>
-            </div>
-            <div>
-              GPG:
-              <span class="outcome">{{
-                squad[player][searchTerm].goals /
-                  squad[player][searchTerm].matches | number : "1.0-2"
-              }}</span>
-            </div>
-            <div>
-              APG:
-              <span class="outcome">{{
-                squad[player][searchTerm].assists /
-                  squad[player][searchTerm].matches | number : "1.0-2"
-              }}</span>
-            </div>
+            <div>Wins: <span class="outcome">{{ getWins(player) }}</span></div>
+            <div>Win %: <span class="outcome">{{ getWinP(player) }}%</span></div>
+            <div>GPG: <span class="outcome">{{ getGPG(player) }}</span></div>
+            <div>APG: <span class="outcome">{{ getAPG(player) }}</span></div>
           </div>
         </div>
       </div>

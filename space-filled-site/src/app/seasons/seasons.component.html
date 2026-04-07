@@ -1,431 +1,89 @@
 <div class="container">
   <h1>Seasons History</h1>
 
-  <div class="card">
-    <div class="card-header">Season 1</div>
-    <div class="card-body">
-      <div class="season-info">
-        <div class="finishing">
-          <div class="finishing_pos">Finishing Position</div>
-          <div class="finishing_num">7th</div>
-        </div>
-        <div class="stats">
-          <div class="stats_score">
-            <span class="stats_title">Wins: </span>2
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Draws: </span>2
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Losses: </span>10
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Points: </span>6
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Goals: </span>20
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Conceded: </span>72
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="topscorer">
-      <div>Top Scorer</div>
-      <div class="scorer-names">Alex Gates & Adam Murphy (6)</div>
-    </div>
+  <div *ngIf="loading" class="text-center mt-5">
+    <div class="spinner-border text-primary" role="status"></div>
   </div>
 
-  <div class="card">
-    <div class="card-header">Season 2</div>
-    <div class="card-body">
-      <div class="season-info">
-        <div class="finishing">
-          <div class="finishing_pos">Finishing Position</div>
-          <div class="finishing_num">5th</div>
-        </div>
-        <div class="stats">
-          <div class="stats_score">
-            <span class="stats_title">Wins: </span>6
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Draws: </span>0
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Losses: </span>8
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Points: </span>12
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Goals: </span>49
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Conceded: </span>54
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="topscorer">
-      <div>Top Scorer</div>
-      <div class="scorer-names">Alex Gates (24)</div>
-    </div>
+  <div *ngIf="!loading && seasons.length === 0" class="text-center text-muted mt-4">
+    No seasons recorded yet. Create one in the <a routerLink="/admin">admin panel</a>.
   </div>
 
-  <div class="card">
-    <div class="card-header">Season 3</div>
-    <div class="card-body">
-      <div class="season-info">
-        <div class="finishing">
-          <div class="finishing_pos">Finishing Position</div>
-          <div class="finishing_num">3rd</div>
+  <div *ngFor="let season of seasons" class="card season-card" (click)="toggleSeason(season.id)">
+    <div class="card-header season-header">
+      <div class="season-header-left">
+        <span>{{ season.name }}</span>
+        <span *ngIf="season.division" class="season-division">{{ season.division }}</span>
+        <span *ngIf="season.isActive" class="badge bg-success ms-2">Active</span>
+      </div>
+      <div class="season-header-right">
+        <div *ngIf="season.finalPosition" class="finishing-badge">
+          <span class="finishing-label">Finished</span>
+          <span class="finishing-pos">{{ season.finalPosition }}</span>
         </div>
-        <div class="stats">
-          <div class="stats_score">
-            <span class="stats_title">Wins: </span>7
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Draws: </span>3
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Losses: </span>4
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Points: </span>17
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Goals: </span>43
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Conceded: </span>41
-          </div>
+        <div *ngIf="season.points !== undefined && season.points !== null" class="points-badge">
+          {{ season.points }} pts
         </div>
+        <span class="expand-icon">{{ expandedSeason === season.id ? '-' : '+' }}</span>
       </div>
     </div>
-    <div class="topscorer">
-      <div>Top Scorer</div>
-      <div class="scorer-names">Alex Gates (19)</div>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="card-header">Season 4</div>
-    <div class="card-body">
-      <div class="season-info">
-        <div class="finishing">
-          <div class="finishing_pos">Finishing Position</div>
-          <div class="finishing_num">6th</div>
-        </div>
-        <div class="stats">
-          <div class="stats_score">
-            <span class="stats_title">Wins: </span>4
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Draws: </span>1
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Losses: </span>9
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Points: </span>9
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Goals: </span>33
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Conceded: </span>38
-          </div>
-        </div>
+    <div *ngIf="expandedSeason === season.id" class="card-body" (click)="$event.stopPropagation()">
+      <div *ngIf="!getData(season.id)" class="text-center">
+        <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
       </div>
-    </div>
-    <div class="topscorer">
-      <div>Top Scorer</div>
-      <div class="scorer-names">Adam Murphy (8)</div>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="card-header">Season 5</div>
-    <div class="card-body">
-      <div class="season-info">
-        <div class="finishing">
-          <div class="finishing_pos">Finishing Position</div>
-          <div class="finishing_num">5th</div>
-        </div>
-        <div class="stats">
-          <div class="stats_score">
-            <span class="stats_title">Wins: </span>4
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Draws: </span>2
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Losses: </span>8
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Points: </span>10
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Goals: </span>32
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Conceded: </span>40
+      <div *ngIf="getData(season.id) as data">
+        <div class="season-info">
+          <div class="stats">
+            <div class="stats_score">
+              <span class="stats_title">Played: </span>{{ data.teamStats.matches }}
+            </div>
+            <div class="stats_score">
+              <span class="stats_title">Wins: </span>{{ data.teamStats.wins }}
+            </div>
+            <div class="stats_score">
+              <span class="stats_title">Draws: </span>{{ data.teamStats.draws }}
+            </div>
+            <div class="stats_score">
+              <span class="stats_title">Losses: </span>{{ data.teamStats.losses }}
+            </div>
+            <div class="stats_score">
+              <span class="stats_title">Goals: </span>{{ data.teamStats.goalsFor }}
+            </div>
+            <div class="stats_score">
+              <span class="stats_title">Conceded: </span>{{ data.teamStats.goalsAgainst }}
+            </div>
+            <div class="stats_score">
+              <span class="stats_title">Win %: </span>{{ data.teamStats.winPercentage }}%
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="topscorer">
-      <div>Top Scorer</div>
-      <div class="scorer-names">Alex Gates (7)</div>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="card-header">Season 6</div>
-    <div class="card-body">
-      <div class="season-info">
-        <div class="finishing">
-          <div class="finishing_pos">Finishing Position</div>
-          <div class="finishing_num">3rd</div>
-        </div>
-        <div class="stats">
-          <div class="stats_score">
-            <span class="stats_title">Wins: </span>8
+        <div class="season-leaders">
+          <div class="leader-card" *ngIf="data.topScorer.length > 0">
+            <h5>Top Scorers</h5>
+            <div *ngFor="let p of data.topScorer" class="leader-entry">
+              <span>{{ p.playerName }}</span>
+              <span class="leader-stat">{{ p.goals }}</span>
+            </div>
           </div>
-          <div class="stats_score">
-            <span class="stats_title">Draws: </span>1
+          <div class="leader-card" *ngIf="data.topAssister.length > 0">
+            <h5>Top Assisters</h5>
+            <div *ngFor="let p of data.topAssister" class="leader-entry">
+              <span>{{ p.playerName }}</span>
+              <span class="leader-stat">{{ p.assists }}</span>
+            </div>
           </div>
-          <div class="stats_score">
-            <span class="stats_title">Losses: </span>5
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Points: </span>17
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Goals: </span>51
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Conceded: </span>39
+          <div class="leader-card" *ngIf="data.topApps.length > 0">
+            <h5>Most Appearances</h5>
+            <div *ngFor="let p of data.topApps" class="leader-entry">
+              <span>{{ p.playerName }}</span>
+              <span class="leader-stat">{{ p.matches }}</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="topscorer">
-      <div>Top Scorer</div>
-      <div class="scorer-names">Alex Gates (11)</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">Season 7</div>
-    <div class="card-body">
-      <div class="season-info">
-        <div class="finishing">
-          <div class="finishing_pos">Finishing Position</div>
-          <div class="finishing_num">3rd</div>
-        </div>
-        <div class="stats">
-          <div class="stats_score">
-            <span class="stats_title">Wins: </span>8
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Draws: </span>1
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Losses: </span>5
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Points: </span>17
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Goals: </span>60
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Conceded: </span>26
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="topscorer">
-      <div>Top Scorer</div>
-      <div class="scorer-names">Luke Parker (15)</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">Season 8</div>
-    <div class="card-body">
-      <div class="season-info">
-        <div class="finishing">
-          <div class="finishing_pos">Finishing Position</div>
-          <div class="finishing_num">4th</div>
-        </div>
-        <div class="stats">
-          <div class="stats_score">
-            <span class="stats_title">Wins: </span>8
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Draws: </span>0
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Losses: </span>6
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Points: </span>16
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Goals: </span>47
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Conceded: </span>38
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="topscorer">
-      <div>Top Scorer</div>
-      <div class="scorer-names">Alex Gates (11)</div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header">Season 9</div>
-    <div class="card-body">
-      <div class="season-info">
-        <div class="finishing">
-          <div class="finishing_pos">Finishing Position</div>
-          <div class="finishing_num">5th</div>
-        </div>
-        <div class="stats">
-          <div class="stats_score">
-            <span class="stats_title">Wins: </span>6
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Draws: </span>0
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Losses: </span>8
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Points: </span>12
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Goals: </span>44
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Conceded: </span>42
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="topscorer">
-      <div>Top Scorer</div>
-      <div class="scorer-names">Alex Gates (11)</div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header">Season 10</div>
-    <div class="card-body">
-      <div class="season-info">
-        <div class="finishing">
-          <div class="finishing_pos">Finishing Position</div>
-          <div class="finishing_num">1st</div>
-        </div>
-        <div class="stats">
-          <div class="stats_score">
-            <span class="stats_title">Wins: </span>8
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Draws: </span>1
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Losses: </span>2
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Points: </span>25
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Goals: </span>52
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Conceded: </span>22
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="topscorer">
-      <div>Top Scorer</div>
-      <div class="scorer-names">Alex Gates (17)</div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header">Season 11</div>
-    <div class="card-body">
-      <div class="season-info">
-        <div class="finishing">
-          <div class="finishing_pos">Finishing Position</div>
-          <div class="finishing_num">4th*</div>
-        </div>
-        <div class="stats">
-          <div class="stats_score">
-            <span class="stats_title">Wins: </span>1
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Draws: </span>0
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Losses: </span>7
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Points: </span>12
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Goals: </span>15
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Conceded: </span>53
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="topscorer">
-      <div>Top Scorer</div>
-      <div class="scorer-names">Tom Tweedy (7)</div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header">Season 12</div>
-    <div class="card-body">
-      <div class="season-info">
-        <div class="finishing">
-          <div class="finishing_pos">Finishing Position</div>
-          <div class="finishing_num">5th</div>
-        </div>
-        <div class="stats">
-          <div class="stats_score">
-            <span class="stats_title">Wins: </span>6
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Draws: </span>0
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Losses: </span>4
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Points: </span>12
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Goals: </span>32
-          </div>
-          <div class="stats_score">
-            <span class="stats_title">Conceded: </span>31
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="topscorer">
-      <div>Top Scorer</div>
-      <div class="scorer-names">Alex Gates (7)</div>
     </div>
   </div>
 </div>

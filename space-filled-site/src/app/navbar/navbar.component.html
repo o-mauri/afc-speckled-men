@@ -6,11 +6,11 @@
     </h1>
   </div>
   <div class="navig-menu">
-    <button [routerLink]="['/home']">Home</button>
-    <button [routerLink]="['/results']">Results</button>
-    <button [routerLink]="['/players']">Players</button>
-    <button [routerLink]="['/squad']">Squad</button>
-    <button [routerLink]="['/stats']">Stats</button>
-    <button [routerLink]="['/seasons']">Seasons</button>
+    <button [routerLink]="['/home']" routerLinkActive="active-link">Home</button>
+    <button [routerLink]="['/results']" routerLinkActive="active-link">Results</button>
+    <button [routerLink]="['/squad']" routerLinkActive="active-link">Squad</button>
+    <button [routerLink]="['/stats']" routerLinkActive="active-link">Stats</button>
+    <button [routerLink]="['/seasons']" routerLinkActive="active-link">Seasons</button>
+    <button class="admin-btn" [routerLink]="['/admin']" routerLinkActive="active-link">Admin</button>
   </div>
 </div>
