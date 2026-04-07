@@ -1,0 +1,163 @@
+<div class="container mt-3">
+  <div class="d-flex align-items-center mb-3">
+    <button class="btn btn-outline-secondary me-3" routerLink="/admin">Back</button>
+    <h2>Manage Matches</h2>
+  </div>
+
+  <div *ngIf="message" class="alert" [ngClass]="'alert-' + messageType">{{ message }}</div>
+
+  <div class="card mb-4">
+    <div class="card-header">{{ editingMatch ? 'Edit Match' : 'Add Match' }}</div>
+    <div class="card-body">
+      <div class="mb-3 form-check forfeit-check">
+        <input type="checkbox" class="form-check-input" id="isForfeit" [(ngModel)]="isForfeit" (ngModelChange)="onForfeitChange()" />
+        <label class="form-check-label" for="isForfeit">Forfeit Match</label>
+        <small *ngIf="isForfeit" class="d-block text-muted">Automatic 0-5 League defeat. No player stats recorded.</small>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Season</label>
+          <select class="form-select" [(ngModel)]="selectedSeasonId">
+            <option *ngFor="let s of seasons" [value]="s.id">
+              {{ s.name }} {{ s.isActive ? '(Active)' : '' }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Date</label>
+          <input type="date" class="form-control" [(ngModel)]="matchDate" />
+        </div>
+        <div class="col-md-6" *ngIf="!isForfeit">
+          <label class="form-label">Match Type</label>
+          <select class="form-select" [(ngModel)]="matchType">
+            <option value="League">League</option>
+            <option value="Friendly">Friendly</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Opponent</label>
+          <input type="text" class="form-control" [(ngModel)]="opponent" placeholder="Opponent name" />
+        </div>
+        <div *ngIf="!isForfeit" class="col-md-3">
+          <label class="form-label">Our Score</label>
+          <input type="number" class="form-control" [(ngModel)]="teamScore" min="0" />
+        </div>
+        <div *ngIf="!isForfeit" class="col-md-3">
+          <label class="form-label">Their Score</label>
+          <input type="number" class="form-control" [(ngModel)]="opponentScore" min="0" />
+        </div>
+        <div *ngIf="!isForfeit" class="col-md-2">
+          <label class="form-label">Ringer Goals</label>
+          <input type="number" class="form-control" [(ngModel)]="ringerGoals" min="0" />
+        </div>
+        <div *ngIf="!isForfeit" class="col-md-2">
+          <label class="form-label">Ringer Assists</label>
+          <input type="number" class="form-control" [(ngModel)]="ringerAssists" min="0" />
+        </div>
+        <div *ngIf="!isForfeit" class="col-md-2">
+          <label class="form-label">Own Goals</label>
+          <input type="number" class="form-control" [(ngModel)]="ownGoals" min="0" />
+        </div>
+      </div>
+
+      <div *ngIf="isForfeit" class="forfeit-banner mt-3">
+        Result: Speckled Men 0 - 5 {{ opponent || '?' }} (Forfeit)
+      </div>
+
+      <div *ngIf="!isForfeit">
+        <hr />
+        <h5>Player Appearances</h5>
+        <div *ngIf="playerEntries.length === 0" class="text-muted mb-3">
+          No players in squad. Add players first.
+        </div>
+        <div class="player-entries">
+          <div *ngFor="let pe of playerEntries" class="player-entry" [class.selected]="pe.selected">
+            <div class="pe-header">
+              <label class="form-check">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="pe.selected" />
+                <span class="form-check-label fw-bold">{{ pe.playerName }}</span>
+              </label>
+            </div>
+            <div *ngIf="pe.selected" class="pe-stats">
+              <div class="pe-stat">
+                <label>Goals</label>
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="pe.goals" min="0" />
+              </div>
+              <div class="pe-stat">
+                <label>Assists</label>
+                <input type="number" class="form-control form-control-sm" [(ngModel)]="pe.assists" min="0" />
+              </div>
+              <div class="pe-stat">
+                <label class="form-check">
+                  <input type="checkbox" class="form-check-input" [(ngModel)]="pe.isGoalkeeper" />
+                  <span class="form-check-label">Goalkeeper</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+        <h5>Validation</h5>
+        <div class="validation-summary">
+          <div class="validation-row" [class.valid]="goalsValid" [class.invalid]="!goalsValid">
+            <span>Goals: Player goals ({{ totalPlayerGoals }}) + Ringer goals ({{ ringerGoals }}) + Own goals ({{ ownGoals }}) = {{ actualGoals }}</span>
+            <span class="validation-expect">Must equal Our Score ({{ expectedGoals }})</span>
+            <span *ngIf="goalsValid" class="validation-icon">OK</span>
+            <span *ngIf="!goalsValid" class="validation-icon">{{ actualGoals > expectedGoals ? 'Too many' : 'Too few' }}</span>
+          </div>
+          <div class="validation-row" [class.valid]="assistsValid" [class.invalid]="!assistsValid">
+            <span>Assists: Player assists ({{ totalPlayerAssists }}) + Ringer assists ({{ ringerAssists }}) = {{ totalAssists }}</span>
+            <span class="validation-expect">Cannot exceed Our Score ({{ teamScore }})</span>
+            <span *ngIf="assistsValid" class="validation-icon">OK</span>
+            <span *ngIf="!assistsValid" class="validation-icon">Too many</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex gap-2 mt-3">
+        <button
+          class="btn btn-primary"
+          (click)="saveMatch()"
+          [disabled]="loading || !formValid"
+        >
+          {{ loading ? 'Saving...' : (editingMatch ? 'Update Match' : 'Add Match') }}
+        </button>
+        <button *ngIf="editingMatch" class="btn btn-secondary" (click)="resetForm()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span>Matches</span>
+      <select class="form-select form-select-sm w-auto" [(ngModel)]="filterSeasonId" (ngModelChange)="loadMatches()">
+        <option *ngFor="let s of seasons" [value]="s.id">{{ s.name }}</option>
+      </select>
+    </div>
+    <div class="card-body">
+      <div *ngIf="matches.length === 0" class="text-muted">No matches recorded.</div>
+      <div *ngFor="let match of matches" class="match-item">
+        <div class="match-info">
+          <span class="match-result" [ngClass]="getResultClass(match)">
+            {{ getResultClass(match) }}
+          </span>
+          <div class="match-details">
+            <span class="match-score">
+              Speckled Men {{ match.teamScore }} - {{ match.opponentScore }} {{ match.opponent }}
+              <span *ngIf="match.isForfeit" class="forfeit-tag">FORFEIT</span>
+            </span>
+            <small class="text-muted">
+              {{ match.date }} | {{ match.matchType }}
+            </small>
+          </div>
+        </div>
+        <div class="match-actions">
+          <button class="btn btn-sm btn-outline-primary" (click)="editMatch(match)">Edit</button>
+          <button class="btn btn-sm btn-outline-danger" (click)="removeMatch(match)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

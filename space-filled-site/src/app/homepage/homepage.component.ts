@@ -1,111 +1,174 @@
-import * as data from '../../assets/siteData.json'
 import { Component, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss']
+  styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent implements OnInit {
-  homeScore: number = 6;
-  oppScore: number = 2;
-  oppName: string = "Saucy 6";
-  lastMatchDetails = {
-    type: '',
-    date: ''
-  };
-  scorers: Array<string> = [];
-  assisters: Array<string> = [];
-  squad: any;
+  loading = true;
+  hasData = false;
 
-  seasonStats: Array<Number> = [0, 0, 0, 0, 0, 0, 0];
-  allTimeStats: Array<Number> = [0, 0, 0, 0, 0, 0, 0];
-  allTimeStatsF: Array<Number> = [0, 0, 0, 0, 0, 0, 0];
+  lastMatch: any = null;
+  lastMatchScorers: string[] = [];
+  lastMatchAssisters: string[] = [];
 
-  stats_includefriendlies: boolean = false;
-  ts_includefriendlies: boolean = false;
-  ta_includefriendlies: boolean = false;
-  cs_includefriendlies: boolean = false;
-  gapg_includefriendlies: boolean = false;
+  seasonStats = { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, winPercentage: 0 };
+  allTimeStats = { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, winPercentage: 0 };
+  allTimeStatsF = { matches: 0, wins: 0, draws: 0, losses: 0, goalsFor: 0, goalsAgainst: 0, winPercentage: 0 };
 
-  topScorers_s: Array<Array<any>> = [];
-  topScorers_at: Array<Array<any>> = [];
-  topScorers_atF: Array<Array<any>> = [];
-  topAssist_s: Array<Array<any>> = [];
-  topAssist_at: Array<Array<any>> = [];
-  topAssist_atF: Array<Array<any>> = [];
+  stats_includefriendlies = false;
+  ts_includefriendlies = false;
+  ta_includefriendlies = false;
+  cs_includefriendlies = false;
+  gapg_includefriendlies = false;
 
-  gapg_s: Array<Array<any>> = [];
-  gapg_at: Array<Array<any>> = [];
-  gapg_atF: Array<Array<any>> = [];
-  cs_s: Array<Array<any>> = [];
-  cs_at: Array<Array<any>> = [];
-  cs_atF: Array<Array<any>> = [];
+  topScorers_s: any[] = [];
+  topScorers_at: any[] = [];
+  topScorers_atF: any[] = [];
+  topAssist_s: any[] = [];
+  topAssist_at: any[] = [];
+  topAssist_atF: any[] = [];
 
-  rG: number = 0;
-  rG_s: number = 0;
-  rG_f: number = 0;
-  rA: number = 0;
-  rA_s: number = 0;
-  rA_f: number = 0;
-  oG: number = 0;
-  oG_s: number = 0;
-  oG_f: number = 0;  
+  gapg_s: any[] = [];
+  gapg_at: any[] = [];
+  gapg_atF: any[] = [];
+  cs_s: any[] = [];
+  cs_at: any[] = [];
+  cs_atF: any[] = [];
 
+  rG = 0; rG_s = 0; rG_f = 0;
+  rA = 0; rA_s = 0; rA_f = 0;
+  oG = 0; oG_s = 0; oG_f = 0;
 
+  activeSeason: any = null;
+  private players: any[] = [];
 
-
-
+  constructor(private api: ApiService) {}
 
   ngOnInit(): void {
-    var rawData = data;
-    var lastMatch = rawData.lastMatchData;
-    this.squad = rawData.squad
+    // Load players and seasons in parallel, then proceed
+    forkJoin({
+      players: this.api.getPlayers(),
+      seasons: this.api.getSeasons(),
+    }).subscribe({
+      next: ({ players, seasons }) => {
+        this.players = players;
+        this.activeSeason = seasons.find((s: any) => s.isActive);
+        if (this.activeSeason) {
+          this.loadSeasonData();
+          this.loadAllTimeData();
+        } else {
+          this.loading = false;
+        }
+      },
+      error: () => (this.loading = false),
+    });
+  }
 
-    this.homeScore = lastMatch.sfScore
-    this.oppName = lastMatch.opponent
-    this.oppScore = lastMatch.oppScore
-    this.lastMatchDetails.type = lastMatch.type
-    this.lastMatchDetails.date = lastMatch.date
+  private loadSeasonData(): void {
+    this.api.getStats(this.activeSeason.id).subscribe({
+      next: (stats) => {
+        this.seasonStats = stats.teamStats;
+        this.rG_s = stats.ringerGoals;
+        this.rA_s = stats.ringerAssists;
+        this.oG_s = stats.ownGoals;
+        this.topScorers_s = this.getTopN(stats.playerStats, 'goals', 5);
+        this.topAssist_s = this.getTopN(stats.playerStats, 'assists', 5);
+        this.cs_s = this.getTopKeeper(stats.playerStats, 'cleanSheetsKeeper');
+        this.gapg_s = this.getGAPG(stats.playerStats, false);
+        this.loadLastMatch();
+      },
+    });
+  }
 
-    var scrs = lastMatch.scorers
-    for (let scr of scrs) {
-      this.scorers.push(this.squad[scr].name)
+  private loadAllTimeData(): void {
+    this.api.getStats().subscribe({
+      next: (stats) => {
+        this.allTimeStatsF = stats.teamStats;
+        this.allTimeStats = stats.teamStatsLeague;
+        this.rG = stats.ringerGoalsLeague;
+        this.rA = stats.ringerAssistsLeague;
+        this.oG = stats.ownGoalsLeague;
+        this.rG_f = stats.ringerGoals;
+        this.rA_f = stats.ringerAssists;
+        this.oG_f = stats.ownGoals;
+        this.topScorers_at = this.getTopN(stats.playerStats, 'goalsLeague', 5);
+        this.topScorers_atF = this.getTopN(stats.playerStats, 'goals', 5);
+        this.topAssist_at = this.getTopN(stats.playerStats, 'assistsLeague', 5);
+        this.topAssist_atF = this.getTopN(stats.playerStats, 'assists', 5);
+        this.cs_at = this.getTopKeeper(stats.playerStats, 'cleanSheetsKeeperLeague');
+        this.cs_atF = this.getTopKeeper(stats.playerStats, 'cleanSheetsKeeper');
+        this.gapg_at = this.getGAPG(stats.playerStats, true);
+        this.gapg_atF = this.getGAPG(stats.playerStats, false);
+        this.hasData = true;
+        this.loading = false;
+      },
+      error: () => (this.loading = false),
+    });
+  }
+
+  private loadLastMatch(): void {
+    this.api.getMatches(this.activeSeason.id).subscribe({
+      next: (matches) => {
+        if (matches.length > 0) {
+          this.lastMatch = matches[0];
+          this.lastMatchScorers = this.groupNames(this.getMatchContributions(this.lastMatch, 'goals'));
+          this.lastMatchAssisters = this.groupNames(this.getMatchContributions(this.lastMatch, 'assists'));
+        }
+      },
+    });
+  }
+
+  private getMatchContributions(match: any, field: string): string[] {
+    const names: string[] = [];
+    for (const p of match.players || []) {
+      if (p[field] > 0) {
+        const name = this.getPlayerName(p.playerId);
+        for (let i = 0; i < p[field]; i++) names.push(name);
+      }
     }
-    var asts = lastMatch.assisters
-    for (let ast of asts) {
-      this.assisters.push(this.squad[ast].name)
+    return names;
+  }
+
+  private getPlayerName(playerId: string): string {
+    const p = this.players.find((pl: any) => pl.id === playerId);
+    return p ? p.name : '?';
+  }
+
+  groupNames(names: string[]): string[] {
+    const counts = new Map<string, number>();
+    for (const n of names) {
+      counts.set(n, (counts.get(n) || 0) + 1);
     }
+    return Array.from(counts.entries()).map(([name, count]) =>
+      count > 1 ? `${name} (x${count})` : name
+    );
+  }
 
-    this.seasonStats = rawData.seasonStats;
-    this.allTimeStats = rawData.allTimeStats;
-    this.allTimeStatsF = rawData.allTimeStatsF;
+  private getTopN(playerStats: any[], field: string, n: number): any[] {
+    return playerStats
+      .filter((p: any) => p[field] > 0)
+      .sort((a: any, b: any) => b[field] - a[field])
+      .slice(0, n)
+      .map((p: any) => [p.playerName, p[field]]);
+  }
 
-    this.topScorers_s = rawData.topScorers_s;
-    this.topScorers_at = rawData.topScorers_at;
-    this.topScorers_atF = rawData.topScorers_atF;
+  private getTopKeeper(playerStats: any[], field: string): any[] {
+    return playerStats
+      .filter((p: any) => p[field] > 0)
+      .sort((a: any, b: any) => b[field] - a[field])
+      .map((p: any) => [p.playerName, p[field]]);
+  }
 
-    this.topAssist_s = rawData.topAssist_s;
-    this.topAssist_at = rawData.topAssist_at;
-    this.topAssist_atF = rawData.topAssist_atF;
-
-    this.gapg_at = rawData.gapg_at;
-    this.gapg_atF = rawData.gapg_atF;
-    this.gapg_s = rawData.gapg_s;
-
-    this.cs_s = rawData.cleansheet_k_s;
-    this.cs_at = rawData.cleansheet_k_at;
-    this.cs_atF = rawData.cleansheet_k_atF;
-
-    this.rG = rawData.ringerGoals;
-    this.rG_s = rawData.ringerGoalsS;
-    this.rG_f = rawData.ringerGoalsF;
-    this.rA = rawData.ringerAst;
-    this.rA_s = rawData.ringerAstS;
-    this.rA_f = rawData.ringerAstF;
-    this.oG = rawData.ownGoal;
-    this.oG_s = rawData.ownGoalS;
-    this.oG_f = rawData.ownGoalF;
-
+  private getGAPG(playerStats: any[], leagueOnly: boolean): any[] {
+    const matchField = leagueOnly ? 'keeperMatchesLeague' : 'keeperMatches';
+    const concField = leagueOnly ? 'concededKeeperLeague' : 'concededKeeper';
+    return playerStats
+      .filter((p: any) => p[matchField] > 0)
+      .map((p: any) => [p.playerName, parseFloat((p[concField] / p[matchField]).toFixed(2))])
+      .sort((a: any, b: any) => a[1] - b[1]);
   }
 }

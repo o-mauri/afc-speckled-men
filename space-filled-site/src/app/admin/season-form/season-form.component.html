@@ -1,0 +1,82 @@
+<div class="container mt-3">
+  <div class="d-flex align-items-center mb-3">
+    <button class="btn btn-outline-secondary me-3" routerLink="/admin">Back</button>
+    <h2>Manage Seasons</h2>
+  </div>
+
+  <div *ngIf="message" class="alert" [ngClass]="'alert-' + messageType">{{ message }}</div>
+
+  <div class="card mb-4">
+    <div class="card-header">{{ editingSeason ? 'Edit Season' : 'Create Season' }}</div>
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Season Name</label>
+          <input type="text" class="form-control" [(ngModel)]="seasonName" placeholder="e.g. 2025/26" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Division</label>
+          <input type="text" class="form-control" [(ngModel)]="division" placeholder="e.g. Division 1" />
+        </div>
+      </div>
+      <div class="mt-3 form-check">
+        <input type="checkbox" class="form-check-input" id="isActive" [(ngModel)]="isActive" />
+        <label class="form-check-label" for="isActive">Set as active season</label>
+        <small class="d-block text-muted">Only one season can be active at a time. Setting this will deactivate the current active season.</small>
+      </div>
+      <div class="d-flex gap-2 mt-3">
+        <button class="btn btn-primary" (click)="saveSeason()" [disabled]="loading || !seasonName.trim()">
+          {{ loading ? 'Saving...' : (editingSeason ? 'Update' : 'Create Season') }}
+        </button>
+        <button *ngIf="editingSeason" class="btn btn-secondary" (click)="resetForm()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">Seasons</div>
+    <div class="card-body">
+      <div *ngIf="seasons.length === 0" class="text-muted">No seasons created yet.</div>
+      <div *ngFor="let season of seasons" class="season-item">
+        <div class="season-info">
+          <span class="season-name">{{ season.name }}</span>
+          <span *ngIf="season.division" class="season-division ms-2">{{ season.division }}</span>
+          <span *ngIf="season.isActive" class="badge bg-success ms-2">Active</span>
+          <span *ngIf="season.finalPosition" class="badge bg-secondary ms-2">{{ season.finalPosition }}</span>
+          <span *ngIf="season.points !== undefined && season.points !== null" class="badge bg-info ms-2">{{ season.points }} pts</span>
+        </div>
+        <div class="season-actions">
+          <button class="btn btn-sm btn-outline-primary" (click)="editSeason(season)">Edit</button>
+          <button class="btn btn-sm btn-outline-danger" (click)="removeSeason(season)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Close-out previous season modal -->
+<div *ngIf="showCloseoutModal" class="modal-backdrop"></div>
+<div *ngIf="showCloseoutModal" class="modal d-block" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Close Out: {{ previousSeasonName }}</h5>
+      </div>
+      <div class="modal-body">
+        <p>You're setting a new active season. Enter the final details for <strong>{{ previousSeasonName }}</strong>:</p>
+        <div class="mb-3">
+          <label class="form-label">Final Position</label>
+          <input type="text" class="form-control" [(ngModel)]="closeoutPosition" placeholder="e.g. 1st, 3rd, 5th" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Total Points</label>
+          <input type="number" class="form-control" [(ngModel)]="closeoutPoints" min="0" placeholder="e.g. 25" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="cancelCloseout()">Cancel</button>
+        <button class="btn btn-primary" (click)="confirmCloseout()">Confirm & Create Season</button>
+      </div>
+    </div>
+  </div>
+</div>

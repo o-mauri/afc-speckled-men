@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,9 +13,11 @@ import { ResultsComponent } from './results/results.component';
 import { SquadComponent } from './squad/squad.component';
 import { StatsComponent } from './stats/stats.component';
 import { SeasonsComponent } from './seasons/seasons.component';
-import { PlayersComponent } from './players/players.component';
-import { HttpClientModule } from '@angular/common/http';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { PlayerFormComponent } from './admin/player-form/player-form.component';
+import { MatchFormComponent } from './admin/match-form/match-form.component';
+import { SeasonFormComponent } from './admin/season-form/season-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'
     SquadComponent,
     StatsComponent,
     SeasonsComponent,
-    PlayersComponent
+    AdminLoginComponent,
+    AdminDashboardComponent,
+    PlayerFormComponent,
+    MatchFormComponent,
+    SeasonFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,9 +40,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'
     FormsModule,
     FontAwesomeModule,
     HttpClientModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

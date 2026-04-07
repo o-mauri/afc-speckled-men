@@ -1,0 +1,22 @@
+@import "../../variables.scss";
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+
+  .card-header {
+    background-color: $main1;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+  }
+}
