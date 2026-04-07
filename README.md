@@ -1,78 +1,74 @@
-# SpaceFilledFC
+# AFC Speckled Men
 
-A web application for managing and displaying football club data, built with Angular and Firebase for the team formally known as space filled now known as AFC Speckled Men.
+A web application for managing and displaying football club data for AFC Speckled Men (formerly Space Filled FC). Built with Angular, Express, and deployed on AWS.
 
 ## Project Structure
 
-The repository consists of two main components:
+```
+├── space-filled-site/   # Angular frontend
+├── backend/             # Express API (TypeScript)
+├── cdk/                 # AWS CDK infrastructure
+├── docker-compose.yml   # Local DynamoDB
+└── Makefile             # Dev & deploy commands
+```
 
-### 1. Web Application (`space-filled-site/`)
-An Angular-based web application that provides the user interface for the football club data.
+### Frontend (`space-filled-site/`)
+Angular app with pages for squad, match results, seasons, stats, and an admin dashboard for managing data.
 
-#### Technologies Used
 - Angular 15.1.0
 - Bootstrap 5.2.3
 - FontAwesome 6.4.0
-- Firebase (Hosting)
 
-#### Getting Started
+### Backend (`backend/`)
+Express API with routes for players, matches, seasons, and stats. Uses JWT-based admin auth.
 
-1. Install dependencies:
-```bash
-cd space-filled-site
-npm install
-```
+- Express 4 (TypeScript)
+- DynamoDB (single-table design)
+- S3 for player images
+- Runs as a Lambda function in production
 
-2. Run the development server:
-```bash
-npm start
-```
-
-3. Build for production:
-```bash
-npm run build
-```
-
-### 2. Data Processing (`calculations/`)
-Python scripts for processing and managing football club data.
-
-#### Files
-- `main.py`: Main data processing script
-- `addPlayer.py`: Script for adding new player data
-- `finalData.json`: Processed data output
-- `tmpData.json`: Temporary data storage
+### Infrastructure (`cdk/`)
+AWS CDK stack that provisions:
+- DynamoDB table
+- S3 buckets (player images + frontend hosting)
+- Lambda + API Gateway
+- CloudFront distribution
 
 ## Development
 
 ### Prerequisites
-- Node.js (for web application)
-- Python 3.x (for data processing)
-- Firebase CLI (for deployment)
+- Node.js
+- Docker (for local DynamoDB)
+- AWS CLI & CDK CLI (for deployment)
 
-### Setup
-1. Clone the repository
-2. Install web application dependencies:
+### Quick Start
+
+1. Install all dependencies:
 ```bash
-cd space-filled-site
-npm install
+make install
 ```
 
-3. Install Python dependencies (if needed):
+2. Start the full local environment (DynamoDB, API on :8841, Angular on :8842):
 ```bash
-pip install -r requirements.txt
+make dev
 ```
+
+3. Stop local services:
+```bash
+make stop
+```
+
+### Other Commands
+
+| Command | Description |
+|---------|-------------|
+| `make build` | Build backend and frontend |
+| `make clean` | Remove build artifacts and stop Docker |
 
 ## Deployment
 
-The web application is deployed using Firebase Hosting. To deploy:
+Deploy to AWS using CDK. Requires `ADMIN_PASSWORD` and `JWT_SECRET` environment variables:
 
-1. Build the application:
 ```bash
-cd space-filled-site
-npm run build
-```
-
-2. Deploy to Firebase:
-```bash
-firebase deploy
+ADMIN_PASSWORD=xxx JWT_SECRET=yyy make deploy
 ```
