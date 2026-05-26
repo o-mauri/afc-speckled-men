@@ -1,0 +1,10 @@
+{
+  "hosted-zone:account=127040845129:domainName=mauricode.co.uk:region=eu-west-2": {
+    "Id": "/hostedzone/Z0260567221KCSYEOFCGM",
+    "Name": "mauricode.co.uk."
+  },
+  "hosted-zone:account=127040845129:domainName=mauricode.co.uk:region=us-east-1": {
+    "Id": "/hostedzone/Z0260567221KCSYEOFCGM",
+    "Name": "mauricode.co.uk."
+  }
+}

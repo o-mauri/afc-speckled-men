@@ -37,17 +37,22 @@ build: build-backend build-frontend
 
 build-backend:
 	cd backend && npm run build
+	cp backend/package.json backend/dist/package.json
+	cd backend/dist && npm install --omit=dev --no-package-lock --silent
 
 build-frontend:
 	cd space-filled-site && node_modules/.bin/ng build
 
 # ─── Deploy ───────────────────────────────────────────────
-# Requires: ADMIN_PASSWORD and JWT_SECRET env vars set
-# Usage: ADMIN_PASSWORD=xxx JWT_SECRET=yyy make deploy
+# Reads secrets from .env file (ADMIN_PASSWORD, JWT_SECRET)
+# Override with env vars if needed: ADMIN_PASSWORD=xxx make deploy
+-include .env
+export ADMIN_PASSWORD JWT_SECRET
+
 deploy: build
 	@if [ -z "$$ADMIN_PASSWORD" ]; then echo "Error: ADMIN_PASSWORD not set"; exit 1; fi
 	@if [ -z "$$JWT_SECRET" ]; then echo "Error: JWT_SECRET not set"; exit 1; fi
-	cd cdk && ADMIN_PASSWORD=$(ADMIN_PASSWORD) JWT_SECRET=$(JWT_SECRET) npx cdk deploy --require-approval never
+	cd cdk && npx cdk deploy --require-approval never --profile personal
 
 # ─── Cleanup ──────────────────────────────────────────────
 clean:

@@ -6,11 +6,18 @@ import * as apigateway from 'aws-cdk-lib/aws-apigateway';
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
+import * as route53 from 'aws-cdk-lib/aws-route53';
+import * as route53Targets from 'aws-cdk-lib/aws-route53-targets';
+import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import { Construct } from 'constructs';
 import * as path from 'path';
 
+interface SpeckledMenStackProps extends cdk.StackProps {
+  certificate: acm.ICertificate;
+}
+
 export class SpeckledMenStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: Construct, id: string, props: SpeckledMenStackProps) {
     super(scope, id, props);
 
     // DynamoDB table - single table design
@@ -52,7 +59,7 @@ export class SpeckledMenStack extends cdk.Stack {
     // IMAGE_BASE_URL is empty because images are served from the same CloudFront domain
     // so the frontend uses relative paths like /images/players/<id>.jpg
     const apiFunction = new lambda.Function(this, 'ApiFunction', {
-      runtime: lambda.Runtime.NODEJS_18_X,
+      runtime: lambda.Runtime.NODEJS_22_X,
       handler: 'lambda.handler',
       code: lambda.Code.fromAsset(path.join(__dirname, '../../backend/dist')),
       memorySize: 256,
@@ -81,6 +88,13 @@ export class SpeckledMenStack extends cdk.Stack {
       },
     });
 
+    // Custom domain setup
+    const domainName = 'speckled-men.mauricode.co.uk';
+
+    const hostedZone = route53.HostedZone.fromLookup(this, 'MauricodeZone', {
+      domainName: 'mauricode.co.uk',
+    });
+
     // CloudFront Origin Access Identity for frontend
     const frontendOAI = new cloudfront.OriginAccessIdentity(this, 'FrontendOAI');
     frontendBucket.grantRead(frontendOAI);
@@ -91,8 +105,10 @@ export class SpeckledMenStack extends cdk.Stack {
 
     // CloudFront distribution
     const distribution = new cloudfront.Distribution(this, 'Distribution', {
+      domainNames: [domainName],
+      certificate: props.certificate,
       defaultBehavior: {
-        origin: new origins.S3Origin(frontendBucket, {
+        origin: origins.S3BucketOrigin.withOriginAccessIdentity(frontendBucket, {
           originAccessIdentity: frontendOAI,
         }),
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
@@ -107,7 +123,7 @@ export class SpeckledMenStack extends cdk.Stack {
           originRequestPolicy: cloudfront.OriginRequestPolicy.ALL_VIEWER_EXCEPT_HOST_HEADER,
         },
         '/images/*': {
-          origin: new origins.S3Origin(imageBucket, {
+          origin: origins.S3BucketOrigin.withOriginAccessIdentity(imageBucket, {
             originAccessIdentity: imageOAI,
           }),
           viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
@@ -143,7 +159,21 @@ export class SpeckledMenStack extends cdk.Stack {
       distributionPaths: ['/*'],
     });
 
+    // DNS record pointing to CloudFront
+    new route53.ARecord(this, 'SiteAliasRecord', {
+      zone: hostedZone,
+      recordName: domainName,
+      target: route53.RecordTarget.fromAlias(
+        new route53Targets.CloudFrontTarget(distribution)
+      ),
+    });
+
     // Outputs
+    new cdk.CfnOutput(this, 'SiteURL', {
+      value: `https://${domainName}`,
+      description: 'Site URL',
+    });
+
     new cdk.CfnOutput(this, 'CloudFrontURL', {
       value: `https://${distribution.distributionDomainName}`,
       description: 'CloudFront distribution URL',
